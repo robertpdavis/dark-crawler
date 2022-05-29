@@ -1,0 +1,63 @@
+html {
+  line-height: 1.5;
+}
+
+label {
+  color: white;
+}
+
+p {
+  color: white;
+}
+
+.home-body {
+  background-image: url('../images/mainbg.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.main-body {
+  background-image: url('../images/pagebg.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.login-text {
+  color: white;
+}
+
+.header {
+  color: red;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 5rem;
+  display: block;
+  text-align: center;
+  ;
+}
+
+.enter-button {
+  display: block;
+  border-radius: 1rem;
+  border-width: 0.3rem;
+  border-color: red;
+  font-size: 2rem;
+  width: 10rem;
+  height: 3.5rem;
+  color: red;
+  font-weight: 800;
+  background: none;
+  position: relative;
+  bottom: -30rem;
+  margin: auto;
+}
+
+.enter-button:hover {
+  background-color: black;
+}
+
+@media only screen and (min-width: 768px) {
+  .header {
+    margin-top: 5rem;
+  }
+
+}
