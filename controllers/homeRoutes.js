@@ -1,6 +1,7 @@
 const router = require('express').Router();
-// const { xxxx, xxxx, xxxx} = require('../models');
+const { User } = require('../models');
 const withAuth = require('../utils/auth');
+const sendMailit = require('../utils/email');
 
 router.get('/', async (req, res) => {
     try {
@@ -12,10 +13,6 @@ router.get('/', async (req, res) => {
 
 router.get('/dashboard', async (req, res) => {
     try {
-
-
-
-
 
         res.render('dashboard', {
 
