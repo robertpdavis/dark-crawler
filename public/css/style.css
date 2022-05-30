@@ -61,3 +61,13 @@ p {
   }
 
 }
+
+/* murad */
+
+.text-color-white{
+  color: white;
+}
+
+a:link, a:visited{
+  color: white !important;
+}
