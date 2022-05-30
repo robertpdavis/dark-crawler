@@ -22,9 +22,12 @@
     "mysql2": "^2.3.3",
     "nodemailer": "^6.7.5",
     "play-sound": "^1.1.5",
+    "pretier": "^0.0.1",
     "sequelize": "^6.20.0"
   },
   "devDependencies": {
-    "eslint": "^8.16.0"
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.6.2"
   }
 }

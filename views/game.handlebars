@@ -1,0 +1,51 @@
+<header class="main-header">
+    <h1>GAME BOARD</h1>
+    <nav>
+        <!-- Conditionally render login or logout links -->
+        <a href="/">Home</a> |
+        <a href="/dashboard">Dashboard</a> |
+        {{#if logged_in}}
+        <button class="no-button" id="logout">Logout</button>
+        {{else}}
+        <a href="/login">Login</a>
+        {{/if}}
+    </nav>
+</header>
+<main class="container container-fluid mt-5">
+    <section class="container-fluid">
+        <div class="row game-row">
+            <aside class="col-3 left-aside">
+                <h4>Points:</h4>
+                <h4>Moves:</h4>
+                <br>
+                <h4>Game Stats</h4>
+                <p>Health:</p>
+                <p>Strenght:</p>
+                <p>Endurance:</p>
+                <p>Intelligence:</p>
+            </aside>
+            <div class="col-6 grid-column">
+                {{#each grid as |tile|}}
+                <div class="row grid-row">
+                    {{#each tile as |details|}}
+                    <div class="col-2 align-middle game-tile">
+                        <p>{{details.emoji}}</p>
+                    </div>
+                    {{/each}}
+                </div>
+                {{/each}}
+                <div class="game-buttons">
+                    <button class="btn btn-dark" type="button">Save Game</button>
+                    <button class="btn btn-dark" type="button">Finish Game</button>
+                </div>
+            </div>
+            <aside class="col-3 right-aside">
+                <h2>Inventory</h2>
+                <p>xxx</p>
+            </aside>
+        </div>
+    </section>
+</main>
+<footer>
+
+</footer>

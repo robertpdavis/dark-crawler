@@ -10,21 +10,102 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/dashboard', withAuth, async (req, res) => {
-    // try {
-
-    // TO DO----------
+router.get('/dashboard', async (req, res) => {
+    try {
 
 
 
-    //     res.render('dashboard', {
-    //         pageTitle,
-    //         posts,
-    //         logged_in: req.session.logged_in
-    //     });
-    // } catch (err) {
-    //     res.status(500).json(err);
-    // }
+
+
+        res.render('dashboard', {
+
+            logged_in: req.session.logged_in
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/game', async (req, res) => {
+    try {
+
+
+        //grid array example - consists of 5 arrays of 6 objects (columns)
+        const grid = [];
+        grid[0] =
+            [
+                {
+                    type: 'encounter',
+                    refId: '1',
+                    emoji: '⚔️'
+                },
+                {
+                    type: 'encounter',
+                    refId: '2',
+                    emoji: '⚔️',
+                },
+                {
+                    type: 'blank',
+                    refId: '',
+                    emoji: '',
+                },
+                {
+                    type: 'reward',
+                    refId: '1',
+                    emoji: '💰'
+                },
+                {
+                    type: 'reward',
+                    refId: '1',
+                    emoji: '💰'
+                },
+                {
+                    type: 'blank',
+                    refId: '',
+                    emoji: '',
+                }
+            ];
+        grid[1] =
+            [
+                {
+                    type: 'encounter',
+                    refId: '1',
+                    emoji: '⚔️'
+                },
+                {
+                    type: 'encounter',
+                    refId: '2',
+                    emoji: '⚔️',
+                },
+                {
+                    type: 'user',
+                    refId: '',
+                    emoji: '🟢',
+                },
+                {
+                    type: 'reward',
+                    refId: '1',
+                    emoji: '💰'
+                },
+                {
+                    type: 'reward',
+                    refId: '1',
+                    emoji: '💰'
+                },
+                {
+                    type: 'blank',
+                    refId: '',
+                    emoji: '',
+                }
+            ];
+
+        res.render('game', {
+            grid,
+            logged_in: req.session.logged_in
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 router.get('/login', (req, res) => {

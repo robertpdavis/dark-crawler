@@ -1,3 +1,10 @@
+:root {
+
+  --header-background-left: #14abb2;
+  --header-background-right: #233eb6;
+
+}
+
 html {
   line-height: 1.5;
 }
@@ -20,19 +27,51 @@ p {
   background-image: url('../images/pagebg.jpg');
   background-repeat: no-repeat;
   background-size: 100%;
+  margin: auto;
 }
 
 .login-text {
   color: white;
 }
 
-.header {
+/* Gradient for the header */
+.main-header {
+  background-image: url('../images/headerbg.jpg');
+  min-height: 4rem;
+  color: white;
+  width: 70%;
+  margin: auto;
+  margin-top: 0.5rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.main-header h1 {
+  display: inline-block;
+}
+
+.home-header {
   color: red;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 5rem;
   display: block;
   text-align: center;
-  ;
+}
+
+nav a {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: white;
+}
+
+.no-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  font-size: 100%;
 }
 
 .enter-button {
@@ -51,6 +90,41 @@ p {
   margin: auto;
 }
 
+.left-aside {
+  border-left-color: black;
+  border-left-style: groove;
+  border-left-width: 0.2rem;
+  color: white;
+}
+
+.right-aside {
+  border-right-color: black;
+  border-right-style: groove;
+  border-right-width: 0.2rem;
+  color: white;
+  padding-left: 5rem;
+}
+
+.right-aside h2 {
+  text-align: center;
+}
+
+.grid-row {
+  min-height: 6rem;
+}
+
+.game-tile {
+  display: inline-block;
+  border-color: white;
+  border-width: 0.2rem;
+  border-style: solid;
+  text-align: center;
+}
+
+.game-buttons {
+  margin-top: 1rem;
+}
+
 .enter-button:hover {
   background-color: black;
 }
@@ -58,6 +132,11 @@ p {
 @media only screen and (min-width: 768px) {
   .header {
     margin-top: 5rem;
+  }
+
+  nav a {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
 }

@@ -2,27 +2,19 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dark Crawler</title>
-  <link rel="stylesheet" href="/css/jass.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/normalise.css" />
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body class="main-body">
   <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-
-    </header>
-    <main class="container container-fluid mt-5">
-      <!-- Render the sub layout -->
-      {{{ body }}}
-    </main>
-    <footer>
-
-    </footer>
+    <!-- Render the sub layout -->
+    {{{ body }}}
   </div>
-
   <!-- Render script for logged in users only -->
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
