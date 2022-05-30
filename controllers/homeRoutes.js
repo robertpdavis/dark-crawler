@@ -77,27 +77,36 @@ router.get('/signup', (req, res) => {
 //POST REQUEST - CREATE AND ADD IN DB
 router.post('/signup', async (req, res) => {
     try {
-      const dbUserData = await User.create({
+        const dbUserData = await User.create({
         fullname: req.body.fullname,
         email: req.body.email,
         password: req.body.password,
-      });
-  
-      //run nodemail code here to send welcome email
-      
-      //sendMailit('New', dbUserData);
+        });
+
+        //run nodemail code here to send welcome email
         
-      req.session.save(() => {
+        //sendMailit('New', dbUserData);
+        
+        req.session.save(() => {
         req.session.loggedIn = true;
         res
-          .status(200)
-          .json({ user: dbUserData, message: 'You are now logged in!' });
-     
-      });
+            .status(200)
+            .json({ user: dbUserData, message: 'You are now logged in!' });
+        
+        });
     } catch (err) {
-      res.status(500).json(err);
+        res.status(500).json(err);
     }
-  });
+});
 
-
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+        res.status(204).end();
+        });
+        res.redirect('/');
+    } else {
+        res.status(404).end();
+    }
+});
 module.exports = router;
