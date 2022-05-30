@@ -1,33 +1,30 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
 
-class Reward extends Model {}
+const sequelize = require("../config/connection.js");
 
-Reward.init(
+class Encounter extends Model {}
+
+Encounter.init(
   {
-    reward_id: {
+    encounter_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
-    reward_name: {
+    encounter_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    reward_description: {
+    encounter_description: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    reward_comment: {
+    encounter_comment: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    reward_type: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    reward_health_points: {
+    encounter_health: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -35,7 +32,7 @@ Reward.init(
         max: 100,
       },
     },
-    reward_strength_points: {
+    encounter_strength: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -43,7 +40,7 @@ Reward.init(
         max: 100,
       },
     },
-    reward_endurance_points: {
+    encounter_endurance: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -51,7 +48,7 @@ Reward.init(
         max: 100,
       },
     },
-    reward_intelligence_points: {
+    encounter_intelligence: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -59,7 +56,7 @@ Reward.init(
         max: 100,
       },
     },
-    reward_game_points: {
+    encounter_game_points: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -70,8 +67,8 @@ Reward.init(
   },
   {
     sequelize,
-    modelName: "reward",
+    modelName: "encounter",
   }
 );
 
-module.exports = Reward;
+module.exports = Encounter;
