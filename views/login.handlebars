@@ -1,22 +1,51 @@
-<div class="row">
-  <div class="col-md-6">
-    <h2 class="login-text">Login</h2>
+<section >
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black" style="background-color: transparent;">
+          <div class="row g-0">
+            <div class="col-12">
+              <div class="card-body p-md-5 mx-md-4">
 
-    <form class="form login-form">
-      <div class="form-group">
-        <label for="username-login">username:</label>
-        <input class="form-input" type="text" id="username-login" />
+                {{!-- <div class="text-center">
+                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                    style="width: 185px;" alt="logo">
+                  <h4 class="mt-1 mb-5 pb-1">We are The Lotus Team</h4>
+                </div> --}}
+
+                <form class="login-form text-color-white" >
+                  <p>Please login to your account</p>
+
+                  <div class="form-outline mb-4">
+                    <input type="email" id="email-address" class="form-control" placeholder="Email address" />
+                    <label class="form-label t">Email</label>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input type="password" id="password" class="form-control" />
+                    <label class="form-label">Password</label>
+                  </div>
+
+                  <div class="text-center pt-1 mb-5 pb-1">
+                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log in</button>
+                    <a class="text-muted" href="\reset">Forgot password?</a>
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center pb-4">
+                    <p class="mb-0 me-2">Don't have an account?</p>
+                    <button type="button" class="btn btn-outline-danger text-color-white" id="new-user">Create new</button>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+            
+            
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="password-login">password:</label>
-        <input class="form-input" type="password" id="password-login" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">Login</button>
-      </div>
-    </form>
-    <p class="login-text">If you are currently not a crawler, click <a href="/signup">here</a> to signup.</p>
+    </div>
   </div>
-</div>
-
-<script src="./js/login.js"></script>
+  <script src="js/login.js"></script>
+</section>
