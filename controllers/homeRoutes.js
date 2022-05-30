@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../models');
 const withAuth = require('../utils/auth');
+const sendMailit = require('../utils/email');
 
 router.get('/', async (req, res) => {
     try {
@@ -85,7 +86,7 @@ router.post('/signup', async (req, res) => {
 
         //run nodemail code here to send welcome email
         
-        //sendMailit('New', dbUserData);
+        sendMailit('New', dbUserData);
         
         req.session.save(() => {
         req.session.loggedIn = true;
