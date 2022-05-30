@@ -1,14 +1,17 @@
 [
     {
-      "name": "Emanuel",
+      "fullname": "Emanuel",
+      "email": "emanuel@hotmail.com",
       "password": "password12345"
     },
     {
-      "name": "Umair",
+      "fullname": "Umair",
+      "email": "umairkhalid@fastmail.fm",
       "password": "password12345"
     },
     {
-      "name": "Lorenzo",
+      "fullname": "Lorenzo",
+      "email": "lorenzo@gmail.com",
       "password": "password12345"
     }
   ]
