@@ -12,14 +12,16 @@ GameItem.init(
       primaryKey: true,
     },
     game_id: {
+      type: DataTypes.INTEGER,
       references: {
-        model: "game",
+        model: "games",
         key: "game_id",
       },
     },
     item_id: {
+      type: DataTypes.INTEGER,
       references: {
-        model: "reward",
+        model: "rewards",
         key: "reward_id",
       },
     },

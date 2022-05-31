@@ -12,14 +12,16 @@ GameEncounter.init(
       primaryKey: true,
     },
     game_id: {
+      type: DataTypes.INTEGER,
       references: {
-        model: "game",
+        model: "games",
         key: "game_id",
       },
     },
     encounter_id: {
+      type: DataTypes.INTEGER,
       references: {
-        model: "encounter",
+        model: "encounters",
         key: "encounter_id",
       },
     },
