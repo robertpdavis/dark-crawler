@@ -6,22 +6,23 @@ class GameEncounter extends Model {}
 
 GameEncounter.init(
   {
-    id: {
+    game_encounter_id: {
       type: DataTypes.UUID,
       defaultValue: UUIDV4,
+      primaryKey: true,
     },
-    game_id: {
-      references: {
-        model: "game",
-        key: "game_id",
-      },
-    },
-    encounter_id: {
-      references: {
-        model: "encounter",
-        key: "encounter_id",
-      },
-    },
+    // game_id: {
+    //   references: {
+    //     model: "game",
+    //     key: "game_id",
+    //   },
+    // },
+    // encounter_id: {
+    //   references: {
+    //     model: "encounter",
+    //     key: "encounter_id",
+    //   },
+    // },
   },
   {
     sequelize,
