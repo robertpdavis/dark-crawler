@@ -2,7 +2,26 @@
 
 class Game {
 
-    
+
+    async newGame(user_id,char_id){
+
+
+    }
+
+    async move(game_id){
+
+        
+    }
+
+    async getEncounter(encounter_id){
+
+        
+    }
+
+    async getReward(encounter_id){
+
+        
+    } 
 
     async createGrid() {
 
@@ -19,40 +38,49 @@ class Game {
         // const encounters = encounterData.map((encounter) => encounter.get({ plain: true }));
         // const rewards = rewardData.map((reward) => reward.get({ plain: true }));
 
+        //Get player starting position
+        const playerPos = Math.floor(Math.random() * tiles);
+
         for (let row = 0; row < gridRows; row++) {
 
             let cols = [];
 
             for (let col = 0; col < gridCol; col++) {
-
+                
                 let obj = {};
 
-                //Randomly get an encounter/reward or blank tile
-                let option = Math.floor(Math.random() * 2);
-                //Get encounter or reward
-                if (option === 1) {
-
-                    let subOption = Math.floor(Math.random() * 2);
-                    if (subOption === 1) {
-                        let selection = Math.floor(Math.random() * encounters.length);
-                        obj.type = 'encounter';
-                        obj.refId=encounters[selection].encounter_id;
-                        obj.emoji='⚔️';
-                    } else {
-                        let selection = Math.floor(Math.random() * rewards.length);
-                        obj.type = 'reward';
-                        obj.refId= rewards[selection].reward_id;
-                        obj.emoji= '💰';
-                    }
-
-                //Get blank
-                } else {
-                    obj.type = 'blank';
+                if (playerPos === (row * 6 + col + 1)) {
+                    obj.type = 'player';
                     obj.refId= '';
-                    obj.emoji= '';
+                    obj.emoji= '🟢';
+                }else{
+                    //Randomly get an encounter/reward or blank tile
+                    let option = Math.floor(Math.random() * 2);
+                    //Get encounter or reward
+                    if (option === 1) {
+
+                        let subOption = Math.floor(Math.random() * 2);
+                        if (subOption === 1) {
+                            let selection = Math.floor(Math.random() * encounters.length);
+                            obj.type = 'encounter';
+                            obj.refId=encounters[selection].encounter_id;
+                            obj.emoji='⚔️';
+                        } else {
+                            let selection = Math.floor(Math.random() * rewards.length);
+                            obj.type = 'reward';
+                            obj.refId= rewards[selection].reward_id;
+                            obj.emoji= '💰';
+                        }
+
+                    //Get blank
+                    } else {
+                        obj.type = 'blank';
+                        obj.refId= '';
+                        obj.emoji= '';
+                    }
                 }
-                
-                cols[col]=obj;
+                    
+                    cols[col]=obj;
             }
 
             grid[row] = cols;
