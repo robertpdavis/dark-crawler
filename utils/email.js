@@ -1,8 +1,8 @@
 
-const nodemailer = require("nodemailer");
+const nodemailer = require('nodemailer');
 require('dotenv').config();
 
-const sendMailit = (mailType, userData) =>{
+const sendMail = (mailType, userData) =>{
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
       //service: 'gmail',
@@ -14,7 +14,7 @@ const sendMailit = (mailType, userData) =>{
         pass: process.env.EMAIL_PASSWORD, // generated ethereal password
       },
     });
-  
+    
     // send mail with defined transport object
     // let info = await transporter.sendMail({
     //   from: 'satnamsinghmail296@gmail.com', // sender address
@@ -25,19 +25,26 @@ const sendMailit = (mailType, userData) =>{
     // });
     let mailText="";
     let mailSubject="";
-
+    let emailTo=userData.email;
+    console.log(mailType);
     if (mailType==='New')
     {
+        emailTo = userData.email;
         mailText= htmlWelcome(userData.fullname);
         mailSubject = "Welcome to Dark Drawler"
     }
     else{
-      mailSubject = "Reset Password - Dark Crawler"
-      mailText="reset password with link below"
+      
+      let token = userData.code;
+      emailTo= userData.email;
+      mailSubject = "Reset Password - Dark Crawler";
+      mailText=`<p>Your security code to reset password is </p><br><br><b> ${token}</b> <br><br> <p> follow http://localhost:3001/resetpass</p>`
     }
+    console.log(emailTo);
+    console.log(mailText);
     let mailOptions = {
       from: 'darkcrawler@bootcampspot.com',
-      to: 'murad.manni@gmail.com',
+      to: emailTo,
       subject: mailSubject,
       html: mailText
     };
@@ -83,4 +90,4 @@ const sendMailit = (mailType, userData) =>{
   
   </html>`
 }
-  module.exports = sendMailit;
+  module.exports = sendMail;
