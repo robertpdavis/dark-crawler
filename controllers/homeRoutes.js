@@ -27,7 +27,7 @@ router.get('/game', async (req, res) => {
     try {
 
 
-        //grid array example - consists of 5 arrays of 6 objects (columns)
+        //grid array test example - consists of 5 arrays of 6 objects (columns)
         const grid = [];
         grid[0] =
             [
@@ -107,13 +107,52 @@ router.get('/game', async (req, res) => {
 
 router.get('/login', (req, res) => {
     // If the user is already logged in, redirect the request to the user dashboard
-    if (req.session.logged_in) {
-        res.redirect('/dashboard');
-        return;
-    }
+    
+  if (req.session.logged_in) {
+    res.render('all', { title: 'Dashboard Main', layout: 'dashboard' });
+    return;
+  }
 
-    res.render('login');
+  res.render('login', { title: 'Login', layout: 'dashboard' });
 });
+
+//LOGIN CHECKING ROUTE
+router.post('/login', async (req, res) => {
+    try {
+      const dbUserData = await User.findOne({
+        where: {
+          email: req.body.email,
+        },
+      });
+  
+      if (!dbUserData) {
+        res
+          .status(400)
+          .json({ message: 'Incorrect email or password. Please try again!' });
+        return;
+      }
+  
+      const validPassword = await dbUserData.checkPassword(req.body.password);
+  
+      if (!validPassword) {
+        res
+          .status(400)
+          .json({ message: 'Incorrect email or password. Please try again!' });
+        return;
+      }
+  
+      req.session.save(() => {
+        req.session.loggedIn = true;
+  
+        res
+          .status(200)
+          .json({ user: dbUserData, message: 'You are now logged in!' });
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  });
 
 router.get('/signup', (req, res) => {
     // If the user is already logged in, redirect the request to the user dashboard
@@ -121,6 +160,42 @@ router.get('/signup', (req, res) => {
         res.redirect('/dashboard');
         return;
     }
+
+//POST REQUEST - CREATE AND ADD IN DB
+router.post('/signup', async (req, res) => {
+    try {
+        const dbUserData = await User.create({
+        fullname: req.body.fullname,
+        email: req.body.email,
+        password: req.body.password,
+        });
+
+        //run nodemail code here to send welcome email
+        
+        sendMailit('New', dbUserData);
+        
+        req.session.save(() => {
+        req.session.loggedIn = true;
+        res
+            .status(200)
+            .json({ user: dbUserData, message: 'You are now logged in!' });
+        
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+        res.status(204).end();
+        });
+        res.redirect('/');
+    } else {
+        res.status(404).end();
+    }
+});
 
     res.render('signup',);
 });
