@@ -11,18 +11,20 @@ GameEncounter.init(
       defaultValue: UUIDV4,
       primaryKey: true,
     },
-    // game_id: {
-    //   references: {
-    //     model: "game",
-    //     key: "game_id",
-    //   },
-    // },
-    // encounter_id: {
-    //   references: {
-    //     model: "encounter",
-    //     key: "encounter_id",
-    //   },
-    // },
+    game_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "games",
+        key: "game_id",
+      },
+    },
+    encounter_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "encounters",
+        key: "encounter_id",
+      },
+    },
   },
   {
     sequelize,

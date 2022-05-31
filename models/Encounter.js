@@ -67,7 +67,7 @@ Encounter.init(
   },
   {
     sequelize,
-    modelName: "encounter",
+    modelName: "encounters",
   }
 );
 

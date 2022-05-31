@@ -5,12 +5,25 @@ class Character extends Model {}
 
 Character.init(
   {
-    // id: {
-    //   type: DataTypes.UUID,
-    //   defaultValue: UUIDV4,
-    //   allowNull: false,
-    //   primaryKey: true,
-    // },
+    character_id: {
+      type: DataTypes.UUID,
+      defaultValue: UUIDV4,
+      primaryKey: true,
+    },
+    game_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "games",
+        key: "game_id",
+      },
+    },
+    inventory_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "inventories",
+        key: "inventory_id",
+      },
+    },
     character_name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -57,7 +70,7 @@ Character.init(
   },
   {
     sequelize,
-    modelName: "character",
+    modelName: "characters",
   }
 );
 

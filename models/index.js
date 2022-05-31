@@ -1,11 +1,11 @@
 const User = require("./User");
 const Game = require("./Game");
-const GameItem = require("./GameItem");
-const GameEncounter = require("./GameEncounter");
-const Character = require("./Character");
-const Encounter = require("./Encounter");
-const Inventory = require("./Inventory");
 const Rewards = require("./Rewards");
+const GameItem = require("./GameItem");
+const Encounter = require("./Encounter");
+const GameEncounter = require("./GameEncounter");
+const Inventory = require("./Inventory");
+const Character = require("./Character");
 
 User.hasOne(Game, {
   foreignKey: "game_id",
@@ -16,32 +16,40 @@ Game.belongsTo(User, {
   foreignKey: "id",
 });
 
+Game.hasOne(Character, {
+  foreignKey: "game_id",
+});
+
 Game.hasMany(GameEncounter, {
-  foreignKey: "game_encounter_id",
+  foreignKey: "game_id",
   onDelete: "CASCADE",
 });
 
 Game.hasMany(GameItem, {
-  foreignKey: "game_item_id",
+  foreignKey: "game_id",
   onDelete: "CASCADE",
 });
 
 Game.hasMany(Encounter, {
-  foreignKey: "game_encounter_id",
+  foreignKey: "game_id",
   onDelete: "CASCADE",
 });
 
 Game.hasMany(Rewards, {
-  foreignKey: "rewards_id",
+  foreignKey: "game_id",
   onDelete: "CASCADE",
 });
 
-Character.belongsTo(User, {
-  foreignKey: "id",
+Character.belongsTo(Game, {
+  foreignKey: "game_id",
 });
 
-Inventory.belongsTo(User, {
-  foreignKey: "id",
+Character.hasOne(Inventory, {
+  foreignKey: "inventory_id",
+});
+
+Inventory.belongsTo(Character, {
+  foreignKey: "inventory_id",
 });
 
 module.exports = {

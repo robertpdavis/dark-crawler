@@ -11,18 +11,20 @@ GameItem.init(
       defaultValue: UUIDV4,
       primaryKey: true,
     },
-    // game_id: {
-    //   references: {
-    //     model: "game",
-    //     key: "game_id",
-    //   },
-    // },
-    // item_id: {
-    //   references: {
-    //     model: "reward",
-    //     key: "reward_id",
-    //   },
-    // },
+    game_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "games",
+        key: "game_id",
+      },
+    },
+    item_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "rewards",
+        key: "reward_id",
+      },
+    },
   },
   {
     sequelize,
