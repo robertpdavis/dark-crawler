@@ -55,6 +55,35 @@ p {
   background-color: black;
 }
 
+.left-aside {
+  color: white;
+}
+
+.right-aside {
+  color: white;
+  padding-left: 5rem;
+}
+
+.right-aside h2 {
+  text-align: center;
+}
+
+.grid-row {
+  min-height: 6rem;
+}
+
+.game-tile {
+  display: inline-block;
+  border-color: white;
+  border-width: 0.2rem;
+  border-style: solid;
+  text-align: center;
+}
+
+.game-buttons {
+  margin-top: 1rem;
+}
+
 @media only screen and (min-width: 768px) {
   .header {
     margin-top: 5rem;
