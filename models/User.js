@@ -35,10 +35,18 @@ User.init(
         len: [8],
       },
     },
+    password_reset_code: {
+        type: DataTypes.STRING
+    }
   },
   {
     hooks: {
       beforeCreate: async (newUserData) => {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        return newUserData;
+      },
+      beforeUpdate: async (newUserData) => {
+        console.log(newUserData);
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },

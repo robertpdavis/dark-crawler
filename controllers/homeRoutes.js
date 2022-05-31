@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const { User } = require('../models');
 const withAuth = require('../utils/auth');
-const sendMailit = require('../utils/email');
+const sendMail = require('../utils/email');
+const randToken = require('rand-token');
 
 router.get('/', async (req, res) => {
     try {
@@ -86,7 +87,7 @@ router.post('/signup', async (req, res) => {
 
         //run nodemail code here to send welcome email
         
-        sendMailit('New', dbUserData);
+        sendMail('New', dbUserData);
         
         req.session.save(() => {
         req.session.loggedIn = true;
@@ -98,6 +99,99 @@ router.post('/signup', async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
+});
+
+
+//RESET PASSWORD GET ROUTE
+router.get('/reset', (req, res) => {
+    res.render('passwordreset', { title: 'Reset Password', layout: 'dashboard' });
+});
+
+
+//PASSWORD RESET ROUTE - Sending Security code to email.
+router.put('/reset', async (req, res) => {
+    
+    try {
+        
+        let token =  randToken.generate(6);
+        console.log(token);
+            const reset = await User.update({password_reset_code: token}, {
+                where: { email: req.body.email }
+            });
+      
+        if (reset) {
+          const args = {
+            email: req.body.email,
+            code : token
+          }
+          console.log(args);
+            sendMail('Reset', args);
+            req.session.resettries=3;
+            res.status(200).json({message:"Password reset email sent."});
+        }
+        else
+        {
+        res.status(400).json({message:"no category matched for updating."});
+        }
+
+    }
+    catch (err){
+        res.status(500).json({message: "run into error, try again later."})
+    }
+});
+ 
+// ROUTE FOR PAGE TO CHANGE PASSWORD WITH SECURITY CODE
+router.get('/resetpass', async (req, res) => {
+  res.render('passwordresetfinal', { title: 'Reset Password', layout: 'dashboard' });
+});
+
+//ROUTE TO UPDATE/CHANGE NEW PASSWORD IF SECURITY CODE MATCHES
+router.put('/resetpass', async (req, res) => {
+  console.log(req.body.email);
+  try {
+      
+      const reset = await User.findOne({
+          where: {
+          email: req.body.email
+          },
+      });
+
+      if (!reset)
+      {
+        res.status(404).json({message: "Invalid Email"});
+        return;
+      }
+      
+      if (reset.password_reset_code!== req.body.resetcode)
+      { 
+        if (req.session.resettries===0)
+        {
+          //delete that code from db and redirect to homepage or other landing page
+          const reset = await User.update({password_reset_code: null}, {
+            where: { email: req.body.email }
+          });
+          res.status(404).json({message: "Invalid Code - 3 attempts done.", tries: req.session.resettries});  
+          return;
+        }
+        if (!req.session.resettries)
+        {
+          req.session.resettries=3;
+        }
+        req.session.resettries--;
+        res.status(404).json({message: "Invalid Code", tries: req.session.resettries});
+        return;
+      }
+
+      console.log(req.body.password);
+      const resetDone = await User.update({password_reset_code: null, password: req.body.password}, {
+        where: { email: req.body.email },
+        individualHooks: true
+      });
+      res.status(200).json({message:"Password changed email sent updated.", stutus:"Done"});
+  }
+  catch (err){
+      res.status(500).json({message: "run into error, try again later."})
+  }
 });
 
 router.post('/logout', (req, res) => {

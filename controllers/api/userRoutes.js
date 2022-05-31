@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const sendMail = require('../../utils/email');
 
 router.post('/', async (req, res) => {
   try {
@@ -48,6 +49,8 @@ router.post('/login', async (req, res) => {
   }
 });
 
+
+// LOGOUT
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
