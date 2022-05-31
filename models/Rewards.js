@@ -70,7 +70,7 @@ Reward.init(
   },
   {
     sequelize,
-    modelName: "reward",
+    modelName: "rewards",
   }
 );
 

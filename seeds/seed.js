@@ -1,8 +1,23 @@
-const sequelize = require('../config/connection');
-const { User } = require('../models');
+const sequelize = require("../config/connection");
+const {
+  User,
+  Character,
+  Encounter,
+  Game,
+  GameEncounter,
+  GameItem,
+  Inventory,
+  Rewards,
+} = require("../models");
 
-const userData = require('./userData');
-//const gameData = require('./gameData');
+const userData = require("./userData");
+const gameData = require("./gameData");
+const characterData = require("./characterData");
+const encounterData = require("./encounterData");
+const gameEncounterData = require("./gameEncounterData");
+const gameItemData = require("./gameItemData");
+const inventoryData = require("./inventoryData");
+const rewardsData = require("./rewardsData");
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -11,13 +26,34 @@ const seedDatabase = async () => {
     individualHooks: true,
     returning: true,
   });
-
-//   for (const game of gameData) {
-//     await Game.create({
-//       ...game,
-//       user_id: users[Math.floor(Math.random() * users.length)].id,
-//     });
-//   }
+  const encounters = await Encounter.bulkCreate(encounterData, {
+    individualHooks: true,
+    returning: true,
+  });
+  const games = await Game.bulkCreate(gameData, {
+    individualHooks: true,
+    returning: true,
+  });
+  const gameEncounters = await GameEncounter.bulkCreate(gameEncounterData, {
+    individualHooks: true,
+    returning: true,
+  });
+  const gameItems = await GameItem.bulkCreate(gameItemData, {
+    individualHooks: true,
+    returning: true,
+  });
+  const inventory = await Inventory.bulkCreate(inventoryData, {
+    individualHooks: true,
+    returning: true,
+  });
+  const rewards = await Rewards.bulkCreate(rewardsData, {
+    individualHooks: true,
+    returning: true,
+  });
+  const characters = await Character.bulkCreate(characterData, {
+    individualHooks: true,
+    returning: true,
+  });
 
   process.exit(0);
 };
