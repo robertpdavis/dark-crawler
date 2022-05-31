@@ -2,7 +2,8 @@ const router = require('express').Router();
 const { User } = require('../models');
 const withAuth = require('../utils/auth');
 const sendMail = require('../utils/email');
-const randToken = require('rand-token');
+// const randToken = require('rand-token');
+const Game = require('../classes/Game');
 
 router.get('/', async (req, res) => {
     try {
@@ -13,18 +14,43 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/dashboard', withAuth, async (req, res) => {
-    res.render('game-grid', { loggedIn: req.session.loggedIn, title: 'Dashboard', layout: 'dashboard' });
+    //To do
+    const menu = 
+    {
+      label1:'Option 1',
+      href1:'#',
+      label2: 'Option 2',
+      href2:'#'
+    }
+
+
+    res.render('dashboard', { menu, loggedIn: req.session.loggedIn, title: 'Dashboard', layout: 'main' });
+});
+
+router.get('/game', withAuth, async (req, res) => {
+  const menu = 
+  {
+      label1:'Save Game',
+      href1:'#',
+      label2: 'Finish Game',
+      href2:'#'
+  }
+  //Get grid data
+  const game = new Game;
+  const grid = await game.createGrid();
+
+  res.render('game', { menu, grid, loggedIn: req.session.loggedIn, title: 'Game Board', layout: 'main' });
 });
 
 router.get('/login', (req, res) => {
     // If the user is already logged in, redirect the request to the user dashboard
     
   if (req.session.logged_in) {
-    res.render('all', { title: 'Dashboard Main', layout: 'dashboard' });
+    res.redirect('/dashboard');
     return;
   }
 
-  res.render('login', { title: 'Login', layout: 'dashboard' });
+  res.render('login', { title: 'Login', layout: 'main' });
 });
 
 //LOGIN CHECKING ROUTE
@@ -73,7 +99,7 @@ router.get('/signup', (req, res) => {
         return;
     }
 
-    res.render('signup', { title: 'SignUp', layout: 'dashboard' });
+    res.render('signup', { title: 'SignUp', layout: 'main' });
 });
 
 //POST REQUEST - CREATE AND ADD IN DB
@@ -104,7 +130,7 @@ router.post('/signup', async (req, res) => {
 
 //RESET PASSWORD GET ROUTE
 router.get('/reset', (req, res) => {
-    res.render('passwordreset', { title: 'Reset Password', layout: 'dashboard' });
+    res.render('passwordreset', { title: 'Reset Password', layout: 'main' });
 });
 
 
@@ -142,7 +168,7 @@ router.put('/reset', async (req, res) => {
  
 // ROUTE FOR PAGE TO CHANGE PASSWORD WITH SECURITY CODE
 router.get('/resetpass', async (req, res) => {
-  res.render('passwordresetfinal', { title: 'Reset Password', layout: 'dashboard' });
+  res.render('passwordresetfinal', { title: 'Reset Password', layout: 'main' });
 });
 
 //ROUTE TO UPDATE/CHANGE NEW PASSWORD IF SECURITY CODE MATCHES
