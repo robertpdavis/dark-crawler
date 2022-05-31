@@ -11,18 +11,20 @@
       <h2 class="login-text">Login</h2>
 
       <form class="form login-form">
-        <div class="form-group">
-          <label for="username-login">username:</label>
-          <input class="form-input" type="text" id="username-login" />
+        <div class="form-outline mb-4">
+          <label class="form-label t">Email</label>
+          <input type="email" id="email-address" class="form-control" placeholder="Email address" />
+        </div>
+        <div class="form-outline mb-4">
+          <label class="form-label">Password</label>
+          <input type="password" id="password" class="form-control" />
         </div>
         <div class="form-group">
-          <label for="password-login">password:</label>
-          <input class="form-input" type="password" id="password-login" />
-        </div>
-        <div class="form-group">
-          <button class="btn btn-primary" type="submit">Login</button>
+          <button class="btn btn-dark" type="submit">Login</button>
+          <a class="login-text" href="\reset">Forgot password?</a>
         </div>
       </form>
+      <br>
       <p class="login-text">If you are currently not a crawler, click <a href="/signup">here</a> to signup.</p>
     </div>
   </section>

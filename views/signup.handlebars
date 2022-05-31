@@ -10,24 +10,29 @@
     <div class="col-md-6">
       <h2 class="login-text">Signup</h2>
 
-      <form class="form signup-form">
-        <div class="form-group">
-          <label for="name-signup">username:</label>
-          <input class="form-input" type="text" id="username-signup" />
+      <form class="form login-form">
+        <div class="form-outline mb-4">
+          <label class="form-label">Username</label>
+          <input type="text" id="fullname" class="form-control" placeholder="Username" />
+        </div>
+        <div class="form-outline mb-4">
+          <label class="form-label">Email</label>
+          <input type="email" id="email" class="form-control" placeholder="Email"  />
+        </div>
+        <div class="form-outline mb-4">
+          <label class="form-label">Password</label>
+          <input type="password" id="password" class="form-control" placeholder="Password" />
+        </div>
+        <div class="form-outline mb-4">
+          <label class="form-label">Confirm Password</label>
+          <input type="email" id="confirm-password" class="form-control" placeholder="Re-enter password"/>
         </div>
         <div class="form-group">
-          <label for="email-signup">email:</label>
-          <input class="form-input" type="text" id="email-signup" />
-        </div>
-        <div class="form-group">
-          <label for="password-signup">password:</label>
-          <input class="form-input" type="password" id="password-signup" />
-        </div>
-        <div class="form-group">
-          <button class="btn btn-primary" type="submit">Sign Up</button>
+          <button class="btn btn-dark" type="submit" id="signup">Sign Up</button>
         </div>
       </form>
     </div>
+
   </section>
 </main>
 <footer>
