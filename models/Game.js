@@ -15,14 +15,14 @@ Game.init(
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "user",
-        key: "id",
-      },
+      // references: {
+      //   model: "user",
+      //   key: "id",
+      // },
     },
-    created: {
-      timestamps: true,
-    },
+    // created: {
+    //   timestamps: true,
+    // },
     game_status: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -30,52 +30,52 @@ Game.init(
     game_character_name: {
       type: DataTypes.STRING,
       allowNull: false,
-      references: {
-        model: "character",
-        key: "character_name",
-      },
+      // references: {
+      //   model: "character",
+      //   key: "character_name",
+      // },
     },
     game_health: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "character",
-        key: "character_health",
-      },
+      // references: {
+      //   model: "character",
+      //   key: "character_health",
+      // },
     },
     game_strength: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "character",
-        key: "character_strength",
-      },
+      // references: {
+      //   model: "character",
+      //   key: "character_strength",
+      // },
     },
     game_endurance: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "character",
-        key: "character_endurance",
-      },
+      // references: {
+      //   model: "character",
+      //   key: "character_endurance",
+      // },
     },
     game_intelligence: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "character",
-        key: "character_intelligence",
-      },
+      // references: {
+      //   model: "character",
+      //   key: "character_intelligence",
+      // },
     },
-    game_grid: {
-      // TO DO: FILL IN
-    },
-    game_position: {
-      // TO DO: FILL IN
-    },
-    game_points: {
-      // TO DO: FILL IN
-    },
+    // game_grid: {
+    //   // TO DO: FILL IN
+    // },
+    // game_position: {
+    //   // TO DO: FILL IN
+    // },
+    // game_points: {
+    //   // TO DO: FILL IN
+    // },
   },
   {
     sequelize,

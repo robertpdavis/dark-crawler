@@ -5,13 +5,12 @@ class Character extends Model {}
 
 Character.init(
   {
-    character_id: {
-      type: DataTypes.UUID,
-      defaultValue: UUIDV4,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
+    // id: {
+    //   type: DataTypes.UUID,
+    //   defaultValue: UUIDV4,
+    //   allowNull: false,
+    //   primaryKey: true,
+    // },
     character_name: {
       type: DataTypes.STRING,
       allowNull: false,
