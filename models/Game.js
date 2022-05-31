@@ -62,20 +62,20 @@ Game.init(
     game_intelligence: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      // references: {
-      //   model: "character",
-      //   key: "character_intelligence",
-      // },
+      references: {
+        model: "character",
+        key: "character_intelligence",
+      },
     },
-    // game_grid: {
-    //   // TO DO: FILL IN
-    // },
-    // game_position: {
-    //   // TO DO: FILL IN
-    // },
-    // game_points: {
-    //   // TO DO: FILL IN
-    // },
+    game_grid: {
+      // TO DO: FILL IN
+    },
+    game_position: {
+      // TO DO: FILL IN
+    },
+    game_points: {
+      // TO DO: FILL IN
+    },
   },
   {
     sequelize,
