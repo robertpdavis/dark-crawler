@@ -27,7 +27,7 @@ Reward.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    reward_health_points: {
+    reward_health: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -35,7 +35,7 @@ Reward.init(
         max: 100,
       },
     },
-    reward_strength_points: {
+    reward_strength: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -43,7 +43,7 @@ Reward.init(
         max: 100,
       },
     },
-    reward_endurance_points: {
+    reward_endurance: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -51,7 +51,7 @@ Reward.init(
         max: 100,
       },
     },
-    reward_intelligence_points: {
+    reward_intelligence: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {

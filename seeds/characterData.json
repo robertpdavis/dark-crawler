@@ -1,22 +1,10 @@
 [
-    {
-      "fullname": "Emanuel",
-      "email": "emanuel@hotmail.com",
-      "password": "password12345"
-    },
-    {
-      "fullname": "Umair",
-      "email": "umairkhalid@fastmail.fm",
-      "password": "password12345"
-    },
-    {
-      "fullname": "Lorenzo",
-      "email": "lorenzo@gmail.com",
-      "password": "password12345"
-    },
-    {
-      "fullname": "Matthew",
-      "email": "m4tt4d1n@gmail.com",
-      "password": "password12345"
-    }
-  ]
+  {
+    "character_name": "Slayer",
+    "character_description": "Like to slaying opponents",
+    "character_health":100,
+    "character_strength": 40,
+    "character_endurance":50,
+    "character_Intelligence":30
+  }
+]

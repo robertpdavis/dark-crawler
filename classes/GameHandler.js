@@ -1,6 +1,6 @@
-// const { User, Character, Encounter, Game, Inventory, Rewards } = require('../models');
+const { User, Character, Encounter, Game, Inventory, Rewards } = require('../models');
 
-class Game {
+class GameHandler {
 
 
     async newGame(user_id,char_id){
@@ -10,6 +10,34 @@ class Game {
 
     async move(game_id){
 
+        if (!game_id){return};
+
+        const grid = JSON.stringify(this.createGrid());
+        
+        const result = await Game.update(
+            { 
+                grid: ""
+            }, 
+            {
+            where: {
+              game_id: 1
+            }
+          });
+            
+          console.log(result);
+
+
+
+
+
+
+        //Get the game object
+        // const gameData = await Game.findByPk(game_id);
+        
+        
+        // const game = gameData.get({ plain: true });
+
+        // console.log(JSON.parse(game.grid));
         
     }
 
@@ -91,11 +119,13 @@ class Game {
 
 }
 
+
+
+
 //test data
 encounters = 
 [
     {
-        encounter_id:1,
         encounter_name: "Enc 1",
         encounter_description: 'Enc 1 description',
         encounter_comment:"You got smashed",
@@ -106,7 +136,6 @@ encounters =
         encounter_game_points: -10
     },
     {
-        encounter_id:2,
         encounter_name: "Enc 2",
         encounter_description: 'Enc 2 description',
         encounter_comment:"You won",
@@ -117,7 +146,6 @@ encounters =
         encounter_game_points: -20
     },
     {
-        encounter_id:3,
         encounter_name: "Enc 1",
         encounter_description: 'Enc 1 description',
         encounter_comment:"You got smashed",
@@ -169,4 +197,4 @@ rewards =
     }
 ];
 
-module.exports = Game;
+module.exports = GameHandler;

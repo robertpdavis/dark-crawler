@@ -1,22 +1,11 @@
 [
     {
-      "fullname": "Emanuel",
-      "email": "emanuel@hotmail.com",
-      "password": "password12345"
-    },
-    {
-      "fullname": "Umair",
-      "email": "umairkhalid@fastmail.fm",
-      "password": "password12345"
-    },
-    {
-      "fullname": "Lorenzo",
-      "email": "lorenzo@gmail.com",
-      "password": "password12345"
-    },
-    {
-      "fullname": "Matthew",
-      "email": "m4tt4d1n@gmail.com",
-      "password": "password12345"
+      "user_id": 1,
+      "game_status": "active",
+      "character_id": 1,
+      "game_grid": "",
+      "game_position": "[5,2]",
+      "game_points": 25
     }
+
   ]
