@@ -1,11 +1,19 @@
 var newUser = document.querySelector("#new-user");
+var myModal = new bootstrap.Modal(document.getElementById("eModal"), {});
 
 newUser.addEventListener("click", createUser);
+
+function showModal(title, error){
+  let modalTitle = document.getElementById("eModalTitle");
+  let modalBody = document.getElementById('eModalBody');
+  modalBody.textContent = error;
+  modalTitle.textContent = title;
+  myModal.show();
+}
 
 function createUser(event){
     event.preventDefault();
     document.location.replace('/signup');
-    //alert("helloworld");
 }
 
 const loginFormHandler = async (event) => {
@@ -25,11 +33,12 @@ const loginFormHandler = async (event) => {
       if (response.ok) {
         document.location.replace('/dashboard');
       } else {
-        alert('Failed to log in.');
+        const result = await response.json();
+        showModal(result.title,result.message);
       }
     }
     else{
-      alert("Please provide username and password");
+      showModal('Incomplete details','Please provide username and password');
     }
   };
 

@@ -74,6 +74,7 @@ Character.init(
   },
   {
     sequelize,
+    timestamps: false,
     modelName: "characters",
   }
 );

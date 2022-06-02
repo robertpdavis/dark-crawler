@@ -1,3 +1,4 @@
+var myModal = new bootstrap.Modal(document.getElementById("eModal"), {});
 
 const doCheck = async (event) =>{
     event.preventDefault();
@@ -9,7 +10,7 @@ const doCheck = async (event) =>{
 
     if (password!=confirmPassword)
     {
-        alert("Password doesnt match!");
+        showModal('Password Error','Password does not match, make sure you enter both the password same (min length 8 characters).');
         return;
     }
 
@@ -21,18 +22,25 @@ const doCheck = async (event) =>{
     })
         
         if (!response.ok) {
-            alert('Failed to sign up.');
+            showModal('Error','Error signing up, please check your details and try again.');
             return;
         }
-        console.log(response)
         location.replace('/dashboard');
             
     }
     else{
-        alert("Please complete all the details.");
+        showModal('Incomplete details','Please complete the form data and press Create Account button.');
     }
 }
 
+function showModal(title, error){
+    let modalTitle = document.getElementById("eModalTitle");
+    let modalBody = document.getElementById('eModalBody');
+    modalBody.textContent = error;
+    modalTitle.textContent = title;
+    myModal.show();
+  }
+  
 document
   .querySelector('.signup-form')
   .addEventListener('submit', doCheck);

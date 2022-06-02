@@ -7,14 +7,14 @@ const GameEncounter = require("./GameEncounter");
 const Inventory = require("./Inventory");
 const Character = require("./Character");
 
-User.hasOne(Game, {
-  foreignKey: "game_id",
-  onDelete: "CASCADE",
-});
+// User.hasOne(Game, {
+//   foreignKey: "game_id",
+//   onDelete: "CASCADE",
+// });
 
-Game.belongsTo(User, {
-  foreignKey: "id",
-});
+// Game.belongsTo(User, {
+//   foreignKey: "id",
+// });
 
 Game.hasOne(Character, {
   foreignKey: "game_id",
