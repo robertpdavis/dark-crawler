@@ -78,6 +78,7 @@ p {
   border-width: 0.2rem;
   border-style: solid;
   text-align: center;
+  font-size: 30px;
 }
 
 .game-buttons {
