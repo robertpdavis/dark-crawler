@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, Game } = require('../models');
 const withAuth = require('../utils/auth');
 const sendMail = require('../utils/email');
 const randToken = require('rand-token');
@@ -28,18 +28,33 @@ router.get('/dashboard', withAuth, async (req, res) => {
 });
 
 router.get('/game', withAuth, async (req, res) => {
+
+  try {
   const menu = 
   {
       label1:'Save Game',
       href1:'#',
       label2: 'Finish Game',
       href2:'#'
-  }
-  //Get grid data
-  const gameHandler = new GameHandler;
-  const grid = await gameHandler.createGrid();
+  };
+  //Get active game data
+ 
+  const gameData = await Game.findOne({
+     where: { 
+        user_id: req.session.user_id,
+        game_status: 'active',
+      },
+  });
 
-  res.render('game', { menu, grid, loggedIn: req.session.loggedIn, title: 'Game Board', layout: 'main' });
+  const game = gameData.get({ plain: true });
+
+  res.render('game', { menu, game, loggedIn: req.session.loggedIn, title: 'Game Board', layout: 'main' });
+
+} catch (err){
+    //No active games for user, redirect to dashboard
+    res.redirect('/dashboard');
+    return;
+}
 });
 
 router.get('/login', (req, res) => {
@@ -79,6 +94,7 @@ router.post('/login', async (req, res) => {
       }
   
       req.session.save(() => {
+        req.session.user_id = dbUserData.id;
         req.session.loggedIn = true;
   
         res
@@ -116,6 +132,7 @@ router.post('/signup', async (req, res) => {
         sendMail('New', dbUserData);
         
         req.session.save(() => {
+        req.session.user_id = dbUserData.id;
         req.session.loggedIn = true;
         res
             .status(200)
@@ -230,4 +247,15 @@ router.post('/logout', (req, res) => {
         res.status(404).end();
     }
 });
+
+router.get('/game/new', withAuth, async (req, res) => {
+
+  const gameHandler = new GameHandler;
+  const game = gameHandler.createGame(2,1);
+
+  console.log(game);
+
+});
+
+
 module.exports = router;

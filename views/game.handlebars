@@ -2,17 +2,16 @@
     <section class="container-fluid">
         <div class="row game-row">
             <aside class="col-3 left-aside">
-                <h4>Points:</h4>
-                <h4>Moves:</h4>
+                <h4>Points: {{game.game_points}}</h4>
                 <br>
                 <h4>Game Stats</h4>
-                <p>Health:</p>
-                <p>Strenght:</p>
-                <p>Endurance:</p>
-                <p>Intelligence:</p>
+                <p>Health: {{game.game_health}}%</p>
+                <p>Strenght: {{game.game_strength}}%</p>
+                <p>Endurance: {{game.game_endurance}}%</p>
+                <p>Intelligence: {{game.game_Intelligence}}%</p>
             </aside>
             <div class="col-6 grid-column">
-                {{#each grid as |tile|}}
+                {{#each game.game_grid as |tile|}}
                 <div class="row grid-row">
                     {{#each tile as |details|}}
                     <div class="col-2 align-middle game-tile">
@@ -27,7 +26,7 @@
             </div>
             <aside class="col-3 right-aside">
                 <h2>Inventory</h2>
-                <p>xxx</p>
+                <p>Knife</p>
             </aside>
         </div>
     </section>

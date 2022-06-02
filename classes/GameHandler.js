@@ -1,43 +1,46 @@
+const { vary } = require('express/lib/response');
 const { User, Character, Encounter, Game, Inventory, Rewards } = require('../models');
 
 class GameHandler {
 
 
-    async newGame(user_id,char_id){
+    async createGame(user_id,char_id){
+        //Get game grid
+        const grid = await this.createGrid();
+        //Get selected character
+        const characterData = await Character.findByPk(char_id);
+        const character = characterData.get({ plain: true });
+        
+        const newGame = await Game.create({
+            user_id: user_id,
+            game_status: 'active',
+            character_id: char_id,
+            game_health: character.character_health,
+            game_strength: character.character_strength,
+            game_endurance: character.character_endurance,
+            game_Intelligence: character.character_Intelligence,
+            game_grid: JSON.stringify(grid),
+            game_position: '',
+            game_points:0
+        })
 
-
+        return newGame;
     }
 
     async move(game_id){
 
         if (!game_id){return};
 
-        const grid = JSON.stringify(this.createGrid());
-        
-        const result = await Game.update(
-            { 
-                grid: ""
-            }, 
-            {
-            where: {
-              game_id: 1
-            }
-          });
-            
-          console.log(result);
-
-
-
-
-
-
         //Get the game object
-        // const gameData = await Game.findByPk(game_id);
-        
-        
-        // const game = gameData.get({ plain: true });
+        const gameData = await Game.findByPk(1);
+        //Clean
+        const game = gameData.get({ plain: true });
 
-        // console.log(JSON.parse(game.grid));
+        const grid = game.game_grid;
+        const lastPos = game.game_position;
+
+
+        return game;
         
     }
 
@@ -59,12 +62,12 @@ class GameHandler {
         var grid = [];
 
         //Get the encounters and rewards from the database
-        // const encounterData = await Encounter.findAll();
-        // const rewardData  = await Rewards.findAll();
+        const encounterData = await Encounter.findAll();
+        const rewardData  = await Rewards.findAll();
         
         //Clean up responses
-        // const encounters = encounterData.map((encounter) => encounter.get({ plain: true }));
-        // const rewards = rewardData.map((reward) => reward.get({ plain: true }));
+        const encounters = encounterData.map((encounter) => encounter.get({ plain: true }));
+        const rewards = rewardData.map((reward) => reward.get({ plain: true }));
 
         //Get player starting position
         const playerPos = Math.floor(Math.random() * tiles);
@@ -108,7 +111,7 @@ class GameHandler {
                     }
                 }
                     
-                    cols[col]=obj;
+                    cols[col] = obj;
             }
 
             grid[row] = cols;
