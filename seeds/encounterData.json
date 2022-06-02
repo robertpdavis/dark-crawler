@@ -1,22 +1,32 @@
 [
-    {
-      "fullname": "Emanuel",
-      "email": "emanuel@hotmail.com",
-      "password": "password12345"
-    },
-    {
-      "fullname": "Umair",
-      "email": "umairkhalid@fastmail.fm",
-      "password": "password12345"
-    },
-    {
-      "fullname": "Lorenzo",
-      "email": "lorenzo@gmail.com",
-      "password": "password12345"
-    },
-    {
-      "fullname": "Matthew",
-      "email": "m4tt4d1n@gmail.com",
-      "password": "password12345"
-    }
-  ]
+  {
+    "encounter_name": "Enc 1",
+    "encounter_description": "Enc 1 description",
+    "encounter_comment":"You got smashed enc 1",
+    "encounter_health":40,
+    "encounter_strength":25,
+    "encounter_endurance":40,
+    "encounter_intelligence": 20,
+    "encounter_game_points": -10
+  },
+  {
+    "encounter_name": "Enc 2",
+    "encounter_description": "Enc 2 description",
+    "encounter_comment":"You got smashed enc 2",
+    "encounter_health":40,
+    "encounter_strength":25,
+    "encounter_endurance":40,
+    "encounter_intelligence": 20,
+    "encounter_game_points": -10
+  },
+  {
+    "encounter_name": "Enc 2",
+    "encounter_description": "Enc 2 description",
+    "encounter_comment":"You smashed em enc 3",
+    "encounter_health":40,
+    "encounter_strength":25,
+    "encounter_endurance":40,
+    "encounter_intelligence": 20,
+    "encounter_game_points": -10
+  }
+]
