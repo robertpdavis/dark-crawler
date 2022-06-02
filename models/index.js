@@ -7,7 +7,7 @@ const GameEncounter = require("./GameEncounter");
 const Inventory = require("./Inventory");
 const Character = require("./Character");
 
-User.hasOne(Game, {
+User.hasMany(Game, {
   foreignKey: "game_id",
   onDelete: "CASCADE",
 });
