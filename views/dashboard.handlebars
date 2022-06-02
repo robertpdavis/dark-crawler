@@ -1,9 +1,17 @@
 <section class="container container-fluid mt-5">
     <section class="container-fluid">
 
-      <div class="game-buttons">
-          <a href="/game"><button class="btn btn-dark" type="button" id="start-game">Start Game</a>
-      </div>
-
-    </section>
-</section>
+<div class="jumbotron">
+  <h1 class="display-4 glow">Welcome!, {{user.fullname}}</h1>
+  <p class="lead">Please select from the following options.</p>
+  <hr class="my-4">
+  <h3 class="text-center text-warning font-weight-bold">Resume the game or start a new game.</h3>
+  <center>
+    <div class="game-buttons">
+        <a href="/game" class="btn btn-dark btn-lg btn-block" type="button" id="start-game">New Game</a>
+    </div>
+    <div class="game-buttons">
+        <a href="/game" class="btn btn-dark btn-lg btn-block" type="button" id="start-game">Continue Game</a>
+    </div>
+  </center>
+</div>
