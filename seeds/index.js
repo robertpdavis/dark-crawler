@@ -26,7 +26,15 @@ const seedDatabase = async () => {
     individualHooks: true,
     returning: true,
   });
+  const rewards = await Rewards.bulkCreate(rewardsData, {
+    individualHooks: true,
+    returning: true,
+  });
   const encounters = await Encounter.bulkCreate(encounterData, {
+    individualHooks: true,
+    returning: true,
+  });
+  const characters = await Character.bulkCreate(characterData, {
     individualHooks: true,
     returning: true,
   });
@@ -43,14 +51,6 @@ const seedDatabase = async () => {
     returning: true,
   });
   const inventory = await Inventory.bulkCreate(inventoryData, {
-    individualHooks: true,
-    returning: true,
-  });
-  const rewards = await Rewards.bulkCreate(rewardsData, {
-    individualHooks: true,
-    returning: true,
-  });
-  const characters = await Character.bulkCreate(characterData, {
     individualHooks: true,
     returning: true,
   });

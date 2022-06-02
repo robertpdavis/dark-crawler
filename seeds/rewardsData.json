@@ -1,22 +1,38 @@
 [
-    {
-      "fullname": "Emanuel",
-      "email": "emanuel@hotmail.com",
-      "password": "password12345"
-    },
-    {
-      "fullname": "Umair",
-      "email": "umairkhalid@fastmail.fm",
-      "password": "password12345"
-    },
-    {
-      "fullname": "Lorenzo",
-      "email": "lorenzo@gmail.com",
-      "password": "password12345"
-    },
-    {
-      "fullname": "Matthew",
-      "email": "m4tt4d1n@gmail.com",
-      "password": "password12345"
-    }
-  ]
+  {
+      "reward_id":1,
+      "reward_name": "Rew 1",
+      "reward_description": "Rew 1 description",
+      "reward_comment":"Good stuff",
+      "reward_type":"Weapon",
+      "reward_health":0,
+      "reward_strength":30,
+      "reward_endurance":2,
+      "reward_intelligence": 0,
+      "reward_game_points": 10
+  },
+  {
+      "reward_id":2,
+      "reward_name": "Rew 2",
+      "reward_description": "Rew 2 description",
+      "reward_comment":"Good stuff",
+      "reward_type":"Weapon",
+      "reward_health":0,
+      "reward_strength":30,
+      "reward_endurance":2,
+      "reward_intelligence": 0,
+      "reward_game_points": 10
+  },
+  {
+      "reward_id":3,
+      "reward_name": "Rew 3",
+      "reward_description": "Rew 3 description",
+      "reward_comment":"Good stuff",
+      "reward_type":"Weapon",
+      "reward_health":0,
+      "reward_strength":30,
+      "reward_endurance":2,
+      "reward_intelligence": 0,
+      "reward_game_points": 10
+  }
+]

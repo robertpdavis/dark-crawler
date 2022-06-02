@@ -3,7 +3,7 @@ const { User } = require('../models');
 const withAuth = require('../utils/auth');
 const sendMail = require('../utils/email');
 const randToken = require('rand-token');
-const Game = require('../classes/Game');
+const GameHandler = require('../classes/GameHandler');
 
 router.get('/', async (req, res) => {
     try {
@@ -36,8 +36,8 @@ router.get('/game', withAuth, async (req, res) => {
       href2:'#'
   }
   //Get grid data
-  const game = new Game;
-  const grid = await game.createGrid();
+  const gameHandler = new GameHandler;
+  const grid = await gameHandler.createGrid();
 
   res.render('game', { menu, grid, loggedIn: req.session.loggedIn, title: 'Game Board', layout: 'main' });
 });
