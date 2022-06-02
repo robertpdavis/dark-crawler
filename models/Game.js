@@ -32,6 +32,38 @@ Game.init(
         key: "character_id",
       },
     },
+    game_health: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        min: 0,
+        max: 100,
+      },
+    },
+    game_strength: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        min: 0,
+        max: 100,
+      },
+    },
+    game_endurance: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        min: 0,
+        max: 100,
+      },
+    },
+    game_Intelligence: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        min: 0,
+        max: 100,
+      },
+    },
     //Details of game grid in json string
     game_grid: {
       type: DataTypes.JSON,
@@ -45,7 +77,7 @@ Game.init(
     game_points: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue:0,
+      defaultValue: 0,
     },
   },
   {
