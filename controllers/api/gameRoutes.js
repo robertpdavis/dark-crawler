@@ -6,7 +6,7 @@ router.get("/:option=new", async (req, res) => {
   try {
     const gameFinder = await Game.findOne({
       where: {
-        user_id: Game.user_id,
+        user_id: req.session.user_id,
       },
     });
     if (!gameFinder) {
@@ -28,7 +28,10 @@ router.get("/:option=new", async (req, res) => {
 
 router.get("/:option=char?id", async (req, res) => {
   try {
-    const newGame = new Game();
+    const gameHandler = new GameHandler();
+    const newGame = gameHandler.newGame(req.session.user_id, character_id);
+
+    res.redirect("/game");
   } catch (error) {
     console.log(err);
     res.status(500).json(err);
@@ -38,7 +41,7 @@ router.get("/:option=char?id", async (req, res) => {
 router.post("/:option=move", async (req, res) => {
   try {
     const gameHandler = new GameHandler();
-    const result = await gameHandler.move(user_id);
+    const result = await gameHandler.move(req.session.game_id);
     const gameFinder = await Game.findOne({
       where: {
         user_id: Game.user_id,
