@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User } = require('../models');
 const withAuth = require('../utils/auth');
 const sendMail = require('../utils/email');
-// const randToken = require('rand-token');
+const randToken = require('rand-token');
 const Game = require('../classes/Game');
 
 router.get('/', async (req, res) => {
