@@ -1,14 +1,1 @@
-[
-    {
-      "user_id": 2,
-      "game_status": "active",
-      "character_id": 1,
-      "game_grid": "",
-      "game_position": "",
-      "game_points": 25,
-      "game_health":100,
-      "game_strength":40,
-      "game_endurance":60,
-      "game_Intelligence":30
-    }
-  ]
+[]

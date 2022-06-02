@@ -11,7 +11,7 @@
                 <p>Intelligence: {{game.game_Intelligence}}%</p>
             </aside>
             <div class="col-6 grid-column">
-                {{#each game.game_grid as |tile|}}
+                {{#each grid as |tile|}}
                 <div class="row grid-row">
                     {{#each tile as |details|}}
                     <div class="col-2 align-middle game-tile">

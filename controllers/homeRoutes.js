@@ -32,7 +32,7 @@ router.get('/game', withAuth, async (req, res) => {
   try {
   const menu = 
   {
-      label1:'Save Game',
+      label1:'xxx',
       href1:'#',
       label2: 'Finish Game',
       href2:'#'
@@ -47,11 +47,13 @@ router.get('/game', withAuth, async (req, res) => {
   });
 
   const game = gameData.get({ plain: true });
+  const grid = JSON.parse(game.game_grid);
 
-  res.render('game', { menu, game, loggedIn: req.session.loggedIn, title: 'Game Board', layout: 'main' });
+  res.render('game', { menu, game, grid, loggedIn: req.session.loggedIn, title: 'Game Board', layout: 'main' });
 
 } catch (err){
-    //No active games for user, redirect to dashboard
+    //No active games for user or other error, redirect to dashboard
+    console.log(err);
     res.redirect('/dashboard');
     return;
 }
@@ -246,15 +248,6 @@ router.post('/logout', (req, res) => {
     } else {
         res.status(404).end();
     }
-});
-
-router.get('/game/new', withAuth, async (req, res) => {
-
-  const gameHandler = new GameHandler;
-  const game = gameHandler.createGame(2,1);
-
-  console.log(game);
-
 });
 
 

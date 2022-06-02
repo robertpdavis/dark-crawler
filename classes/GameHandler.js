@@ -3,14 +3,22 @@ const { User, Character, Encounter, Game, Inventory, Rewards } = require('../mod
 
 class GameHandler {
 
+    constructor() {
+        //Set up so grid size could change e.g. enhancement
+        this.tiles = 30;
+        this.gridRows = 5;
+        this.gridCols = this.tiles/this.gridRows;
+    }
 
-    async createGame(user_id,char_id){
+
+    async newGame(user_id,char_id){
         //Get game grid
         const grid = await this.createGrid();
         //Get selected character
         const characterData = await Character.findByPk(char_id);
         const character = characterData.get({ plain: true });
         
+        //Create the new game
         const newGame = await Game.create({
             user_id: user_id,
             game_status: 'active',
@@ -32,33 +40,144 @@ class GameHandler {
         if (!game_id){return};
 
         //Get the game object
-        const gameData = await Game.findByPk(1);
-        //Clean
+        const gameData = await Game.findByPk(game_id);
         const game = gameData.get({ plain: true });
+        //Get the game grid
+        const grid = JSON.parse(game.game_grid);
+        //Get the players current pos
+        const playerPos = await this.getPlayerPos(grid);
+        //Get the players last pos
+        let lastPos = game.game_position;
+        //Get randow direction 1=up, 2=down, 3=left, 4=right
+        const direction = Math.floor(Math.random() * 4);
+        let newPos = [];
+        newPos[0] = playerPos[0];
+        newPos[1] = playerPos[1];
+        let move = false;
 
-        const grid = game.game_grid;
-        const lastPos = game.game_position;
 
+        while (move != true) {
+            //Get randow direction 1=up, 2=down, 3=left, 4=right
+            const direction = Math.floor(Math.random() * 4);
 
-        return game;
+            switch (direction) {
+                case 1:
+                    --newPos[0];                
+                    break;
+                case 2:
+                    ++newPos[0];                
+                    break;
+                case 3:
+                    --newPos[1];                
+                    break;
+                case 3:
+                    --newPos[1];                
+                    break;
+                default:
+                    break;
+            }        
+            //If there was a last pos
+            if (lastPos != ''){
+                //Make sure the newPos and lastPos are not equal i.e. go back on itself
+                if ((lastPos[0] != newPos[0] || lastPos[1] != newPos[1])) {
+                    //check newPos is within the grid
+                    if (newPos[0] > 0 && newPos[1] > 0 && newPos[0] < this.gridCols && newPos[1] < this.gridRows) {
+                        move = true;
+                    }
+                }     
+            }else{//check newPos is within the grid
+
+                if (newPos[0] >= 0 && newPos[1] >= 0 && newPos[0] < this.gridCols && newPos[1] < this.gridRows) {
+                    move = true;
+                }
+            }
+        }
+        //move made set last pos 
+        lastPos = playerPos;
+
+        //See if there is currently an encounter or reward in the new pos
+        let encounter;
+        let reward;
+        const action = grid[newPos[0]][newPos[1]]['type'];
+        //If encounter
+        if (action === 'encounter') {
+            const encounter = await this.getEncounter(grid[newPos[0]][newPos[1]]['refId']);
+            //TO DO all encounter calcs
+
+            let health = '';
+            let strength = '';
+            let endurance = '';
+            let intelligence = '';
+            // let points = game.game_points + or - x;
+        };
+
+        if (action === 'reward') {
+            const reward = await this.getReward(grid[newPos[0]][newPos[1]]['refId']);
+            //TO DO all reward calcs
+            
+            let health = '';
+            let strength = '';
+            let endurance = '';
+            let intelligence = '';
+            // let points = game.game_points + or - x;
+        }
+        //Put player in newPos
+        let obj ={};
+        obj.type = 'player';
+        obj.refId= '';
+        obj.emoji= '🟢';
+        grid[newPos[0]][newPos[1]]=obj;
+
+        //Clear player from old pos
+        obj.type = 'blanc';
+        obj.refId= '';
+        obj.emoji= '';
+        grid[playerPos[0]][playerPos[1]]=obj;
+
+        //Update game
+        Game.update(
+            {
+            //   game_health: health,
+            //   game_strength: strength,
+            //   game_endurance: endurance,
+            //   game_Intelligence: intelligence,
+              game_grid: JSON.stringify(grid),
+              game_postion: playerPos,
+            //   game_points: points,
+              
+            },
+            {
+              // Gets a book based on the book_id given in the request parameters
+              where: {
+                game_id: game_id,
+              },
+            }
+          )
+
+        const updatedGameData = await Game.findByPk(game_id);
+        const updatedGame = updatedGameData.get({ plain: true });
+
+        //Add encounter or reward object to game object for client end stuff
+        if (encounter){updatedGame.encounter = encounter};
+        if (reward){updatedGame.reward = reward};
+
+        return updatedGame;
         
     }
 
     async getEncounter(encounter_id){
-
-        
+        const encounterData = await Encounter.findByPk(encounter_id);
+        const encounter = encounterData.get({ plain: true });
+        return encounter;
     }
 
-    async getReward(encounter_id){
-
-        
+    async getReward(reward_id){
+        const rewardData = await Rewards.findByPk(reward_id);
+        const reward = rewardData.get({ plain: true });
+        return reward;
     } 
 
     async createGrid() {
-
-        const tiles = 30;
-        const gridRows = 5;
-        const gridCol = tiles/gridRows;
         var grid = [];
 
         //Get the encounters and rewards from the database
@@ -70,13 +189,13 @@ class GameHandler {
         const rewards = rewardData.map((reward) => reward.get({ plain: true }));
 
         //Get player starting position
-        const playerPos = Math.floor(Math.random() * tiles);
+        const playerPos = Math.floor(Math.random() * this.tiles);
 
-        for (let row = 0; row < gridRows; row++) {
+        for (let row = 0; row < this.gridRows; row++) {
 
             let cols = [];
 
-            for (let col = 0; col < gridCol; col++) {
+            for (let col = 0; col < this.gridCols; col++) {
                 
                 let obj = {};
 
@@ -120,84 +239,19 @@ class GameHandler {
         return grid;
     }
 
+    //Gets the palyer postion in the grid
+    async getPlayerPos(grid) {
+        let rows = grid.length;
+        for (let row = 0; row < rows; row++) {
+            let cols = grid[row].length
+            for (let col = 0; col < cols; col++) {
+                if (grid[row][col]['type'] === 'player') {
+                    return [row,col];
+                }
+            }
+        }
+    }
 }
 
-
-
-
-//test data
-encounters = 
-[
-    {
-        encounter_name: "Enc 1",
-        encounter_description: 'Enc 1 description',
-        encounter_comment:"You got smashed",
-        encounter_health:40,
-        encounter_strength:25,
-        encounter_endurance:40,
-        encounter_intelligence: 20,
-        encounter_game_points: -10
-    },
-    {
-        encounter_name: "Enc 2",
-        encounter_description: 'Enc 2 description',
-        encounter_comment:"You won",
-        encounter_health:10,
-        encounter_strength:10,
-        encounter_endurance:10,
-        encounter_intelligence: 20,
-        encounter_game_points: -20
-    },
-    {
-        encounter_name: "Enc 1",
-        encounter_description: 'Enc 1 description',
-        encounter_comment:"You got smashed",
-        encounter_health:40,
-        encounter_strength:25,
-        encounter_endurance:40,
-        encounter_intelligence: 20,
-        encounter_game_points: -10
-    }
-];
-
-rewards = 
-[
-    {
-        reward_id:1,
-        reward_name: "Rew 1",
-        reward_description: 'Rew 1 description',
-        reward_comment:"Good stuff",
-        reward_type:"Weapon",
-        reward_health:0,
-        reward_strength:30,
-        reward_endurance:2,
-        reward_intelligence: 0,
-        reward_game_points: 10
-    },
-    {
-        reward_id:2,
-        reward_name: "Rew 1",
-        reward_description: 'Rew 1 description',
-        reward_comment:"Good stuff",
-        reward_type:"Weapon",
-        reward_health:0,
-        reward_strength:30,
-        reward_endurance:2,
-        reward_intelligence: 0,
-        reward_game_points: 10
-    },
-    {
-        reward_id:3,
-        reward_name: "Rew 3",
-        reward_description: 'Rew 3 description',
-        reward_comment:"Good stuff",
-        reward_type:"Weapon",
-        reward_health:0,
-        reward_strength:30,
-        reward_endurance:2,
-        reward_intelligence: 0,
-        reward_game_points: 10
-    }
-];
 
 module.exports = GameHandler;
