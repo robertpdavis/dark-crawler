@@ -15,7 +15,7 @@ const doCheck = async (event) =>{
     }
 
     if (fullname && email) {
-        const response = await fetch('/signup', {
+        const response = await fetch('/api/users/signup', {
         method: 'POST',
         body: JSON.stringify({ fullname, email, password }),
         headers: { 'Content-Type': 'application/json' },
