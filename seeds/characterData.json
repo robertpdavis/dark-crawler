@@ -1,10 +1,26 @@
 [
   {
     "character_name": "Slayer",
-    "character_description": "Like to slaying opponents",
+    "character_description": "A strength based mercenary, the Slayer is drawn to the dungeons in hope of making coin ridding the local villages of their pests.",
     "character_health":100,
-    "character_strength": 40,
-    "character_endurance":50,
+    "character_strength": 60,
+    "character_endurance":30,
+    "character_Intelligence":30
+  },
+  {
+    "character_name": "Scholar",
+    "character_description": "An intelligence based researcher, the Scholar risks the dangers of the dungeons to uncover new lore and arcana.",
+    "character_health":100,
+    "character_strength": 30,
+    "character_endurance":30,
+    "character_Intelligence":60
+  },
+  {
+    "character_name": "Templar",
+    "character_description": "An endurance based knight, the Templar sees delving the dungeons as part of his holy quest to rid the land of evil.",
+    "character_health":100,
+    "character_strength": 30,
+    "character_endurance":60,
     "character_Intelligence":30
   }
 ]
