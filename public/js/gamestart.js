@@ -70,7 +70,7 @@ const movePos = async ()=>
 
             if (result.game_status==="Over")
             {
-                url =  '<h6>' + result.encounter_description + '</h6><img src="../images/gameover.gif" width=470>';
+                url =  '<h6>Better luck next time.</h6><img src="../images/gameover.gif" width=470>';
                 showModal("Game Over", url)
                 setInterval(()=>{
                     closeModal();

@@ -170,16 +170,10 @@ router.get('/gamestart/:game_id', withAuth, async (req, res) => {
 router.post('/gamestart/:row/:col', withAuth, async (req, res) => {
   let actionDetails="";
   try{
-    // if (req.body.type==="encounter")
-    // {
-    //   console.log("I am in encouter if statement")
-    //   const encounters= new EncounterClass();
-    //   actionDetails = await encounters.getSingle(req.body.refId);
-    // }
-      console.log(req.body)
+    
       actionDetails = await game.changeGrid(req.body)
 
-       console.log(actionDetails);
+    
       res.status(200).json({message: "Updated", returnValue: actionDetails, game_id: req.session.gameId, game_status: game.game_status});  
     }
   catch(err){

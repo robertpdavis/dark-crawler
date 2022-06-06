@@ -1,6 +1,6 @@
 const User = require("./User");
 const Game = require("./Game");
-const Rewards = require("./Rewards");
+const Reward = require("./Rewards");
 const GameItem = require("./GameItem");
 const Encounter = require("./Encounter");
 const GameEncounter = require("./GameEncounter");
@@ -35,7 +35,7 @@ Game.hasMany(Encounter, {
   onDelete: "CASCADE",
 });
 
-Game.hasMany(Rewards, {
+Game.hasMany(Reward, {
   foreignKey: "game_id",
   onDelete: "CASCADE",
 });
@@ -60,5 +60,5 @@ module.exports = {
   Character,
   Encounter,
   Inventory,
-  Rewards,
+  Reward,
 };
