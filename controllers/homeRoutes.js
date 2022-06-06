@@ -152,14 +152,20 @@ router.get('/gamestart/:game_id', withAuth, async (req, res) => {
     { req.session.save(()=>{
       req.session.characterId=gameData.character_id;
       req.session.gameId=gameData.game_id;
+      
     });
 
     const gameCharacter = await character.getSingle( gameData.character_id)
     
-    res.render('game', { menu, gameData, gameCharacter, loggedIn: req.session.loggedIn, title: 'Game Grid', layout: 'main' });
+    res.render('game', { menu, gameData, gameCharacter, gameMoves: req.session.moves,  loggedIn: req.session.loggedIn, title: 'Game Grid', layout: 'main' });
     }
     else
     {
+      req.session.save(()=>{
+        req.session.gameId="";
+        req.session.characterId="";
+        req.session.moves=0;
+      })
       res.render('dashboard', {menu, loggedIn: req.session.loggedIn, userFullname:req.session.fullName, title: 'Dashboard', layout: 'main' });
     }
 })
@@ -172,9 +178,8 @@ router.post('/gamestart/:row/:col', withAuth, async (req, res) => {
   try{
     
       actionDetails = await game.changeGrid(req.body)
-
-    
-      res.status(200).json({message: "Updated", returnValue: actionDetails, game_id: req.session.gameId, game_status: game.game_status});  
+      req.session.moves++;
+      res.status(200).json({message: "Updated", gameMoves: req.session.moves, returnValue: actionDetails, game_id: req.session.gameId, game_status: game.game_status});  
     }
   catch(err){
    

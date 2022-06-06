@@ -4,7 +4,7 @@
             <aside class="col-3 left-aside">
                 <h4>Character:</h4><p><span id="character-name">{{gameCharacter.character_name}}</span></p>
                 <h4>Points:</h4><p><span id="points">{{gameData.game_points}}</span></p>
-                <h4>Moves: <span id="moves">{{gameData.game_moves}}</span></h4>
+                <h4>Moves: <span id="moves">{{gameMoves}}</span></h4>
                 <br>
                 <h4>Game Stats</h4>
                 <p>Health: <span id="game-health">{{gameData.game_health}}</span></p>
@@ -28,14 +28,11 @@
                     {{/each}}
                 </div>
                 {{/each}}
-                <div class="game-buttons">
-                    <button class="btn btn-dark" type="button" id="next-move">Next Move</button>
-                </div>
             </div>
             
             <aside class="col-3 right-aside">
                 <h2>Inventory</h2>
-                <p id="test-show">xxx</p>
+                {{!-- <p id="test-show">xxx</p> --}}
             </aside>
         </div>
     </section>

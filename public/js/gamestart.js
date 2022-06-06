@@ -1,5 +1,3 @@
-
-let pos = $("#test-show");
 let gameGrid = $("#game-grid");
 let playerRow="";
 let playerCol="";
@@ -45,17 +43,31 @@ const movePos = async ()=>
 
     if(response.ok){
         let result=await response.json();
-        console.log(result);
-        // alert(result.game_status);
         let url="";
+    
         if (type==="encounter")
         {
-            url =  '<h6>' + result.returnValue.encounter_description + '</h6><img src="../images/encounter.gif" width=470>';
+            url =  `<h6> ${result.returnValue.encounter_description} </h6>
+            
+                    <ul>
+                        <li><h7>Strength  ${result.returnValue.encounter_strength}  </h7></li>
+                        <li><h7>Health  ${result.returnValue.encounter_health}  </h7></li>
+                        <li><h7>Endurance  ${result.returnValue.encounter_endurance}  </h7></li>
+                        <li><h7>Intelligence  ${result.returnValue.encounter_intelligence}  </h7></li>
+                    </ul>
+                    <img src="../images/encounter.gif" width=470>`;
             title= result.returnValue.encounter_name;
         }
         else if(type==="reward")
         {
-            url =  '<h6>' + result.returnValue.reward_description + '</h6><img src="../images/reward.gif" width=470>';
+            url =  `<h6>${result.returnValue.reward_description}</h6>
+                    <ul>
+                        <li><h7>Strength  ${result.returnValue.reward_strength}  </h7></li>
+                        <li><h7>Health  ${result.returnValue.reward_health}  </h7></li>
+                        <li><h7>Endurance  ${result.returnValue.reward_endurance}  </h7></li>
+                        <li><h7>Intelligence ${result.returnValue.reward_intelligence}  </h7></li>
+                    </ul>
+                    <img src="../images/reward.gif" width=470>`;
             title= result.returnValue.reward_name;
             // title = "Reward";
         }
@@ -70,7 +82,7 @@ const movePos = async ()=>
 
             if (result.game_status==="Over")
             {
-                url =  '<h6>Better luck next time.</h6><img src="../images/gameover.gif" width=470>';
+                url =  `<h6>Better luck next time.</h6><img src="../images/gameover.gif" width=470>`;
                 showModal("Game Over", url)
                 setInterval(()=>{
                     closeModal();
@@ -145,10 +157,9 @@ function userInput(event){
             return;
     }
     
-    pos.text("Row " + playerRow + ", Col " + playerCol);
+    // pos.text("Row " + playerRow + ", Col " + playerCol);
     movePos();
 }
 
 document.addEventListener('keydown', userInput);
 findStartPos();
-pos.text("Row " + playerRow + ", Col " + playerCol);
