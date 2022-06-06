@@ -2,19 +2,27 @@
     <section class="container-fluid">
         <div class="row game-row">
             <aside class="col-3 left-aside">
-                <h4>Points: {{game.game_points}}</h4>
+                <h4>Character:</h4><p><span id="character-name">{{gameCharacter.character_name}}</span></p>
+                <h4>Points:</h4><p><span id="points">{{gameData.game_points}}</span></p>
+                <h4>Moves: <span id="moves">{{gameData.game_moves}}</span></h4>
                 <br>
                 <h4>Game Stats</h4>
-                <p>Health: {{game.game_health}}%</p>
-                <p>Strenght: {{game.game_strength}}%</p>
-                <p>Endurance: {{game.game_endurance}}%</p>
-                <p>Intelligence: {{game.game_Intelligence}}%</p>
+                <p>Health: <span id="game-health">{{gameData.game_health}}</span></p>
+                <p>Strenght: <span id="game-strength">{{gameData.game_strength}}</span></p>
+                <p>Endurance: <span id="game-endurance">{{gameData.game_endurance}}</span></p>
+                <p>Intelligence: <span id="game-intelligence">{{gameData.game_Intelligence}}</span></p>
+                
+                <span id="grid" data-grid="{{gameData.game_grid}}"></span>
+                
             </aside>
-            <div class="col-6 grid-column">
-                {{#each grid as |tile|}}
-                <div class="row grid-row">
+            <div class="col-6 grid-column" id="game-grid">
+                {{#each gameData.game_grid as |tile|}}
+                <div class="row grid-row" data-col-id="{{@index}}">
                     {{#each tile as |details|}}
-                    <div class="col-2 align-middle game-tile">
+                    {{!-- {{#if (details.type 'player')}}
+                        <span id="player-pos"></span>
+                    {{/if}} --}}
+                    <div class="col-2 align-middle game-tile" data-row-id="{{@index}}" data-type="{{details.type}}" data-refId="{{details.refId}}">
                         <p>{{details.emoji}}</p>
                     </div>
                     {{/each}}
@@ -24,12 +32,18 @@
                     <button class="btn btn-dark" type="button" id="next-move">Next Move</button>
                 </div>
             </div>
+            
             <aside class="col-3 right-aside">
                 <h2>Inventory</h2>
-                <p>Knife</p>
+                <p id="test-show">xxx</p>
             </aside>
         </div>
     </section>
 </section>
 
-<script src="js/game.js"></script>
+<script src="../js/game.js">
+function m(a)
+{
+    console.log(a)
+}</script>
+<script src="../js/gamestart.js"></script>

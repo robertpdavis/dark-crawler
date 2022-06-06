@@ -1,4 +1,4 @@
-var myModal = new bootstrap.Modal(document.getElementById("eModal"), {});
+// var myModal = new bootstrap.Modal(document.getElementById("eModal"), {});
 
 const doCheck = async (event) =>{
     event.preventDefault();
@@ -15,7 +15,7 @@ const doCheck = async (event) =>{
     }
 
     if (fullname && email) {
-        const response = await fetch('/api/users/signup', {
+        const response = await fetch('/signup', {
         method: 'POST',
         body: JSON.stringify({ fullname, email, password }),
         headers: { 'Content-Type': 'application/json' },
@@ -33,14 +33,14 @@ const doCheck = async (event) =>{
     }
 }
 
-function showModal(title, error){
-    let modalTitle = document.getElementById("eModalTitle");
-    let modalBody = document.getElementById('eModalBody');
-    modalBody.textContent = error;
-    modalTitle.textContent = title;
-    myModal.show();
-  }
-  
+// function showModal(title, error){
+//     let modalTitle = document.getElementById("eModalTitle");
+//     let modalBody = document.getElementById('eModalBody');
+//     modalBody.textContent = error;
+//     modalTitle.textContent = title;
+//     myModal.show();
+//   }
+
 document
   .querySelector('.signup-form')
   .addEventListener('submit', doCheck);
