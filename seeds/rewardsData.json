@@ -1,6 +1,5 @@
 [
   {
-      "reward_id":1,
       "reward_name": "Blazing Blade",
       "reward_description": "A sword set ablaze with a magical flame",
       "reward_comment":"A boon to any adventurer, surely the weapon will see good use.",
@@ -12,7 +11,6 @@
       "reward_game_points": 10
   },
   {
-      "reward_id":2,
       "reward_name": "Scepter of Intelligence",
       "reward_description": "An ancient relic of a king's advisor, fabled to enlighten those who wield it.",
       "reward_comment":"A calm focus overcomes you as you take hold of the scepter.",
@@ -24,7 +22,6 @@
       "reward_game_points": 10
   },
   {
-      "reward_id":3,
       "reward_name": "Shield of Fortitude",
       "reward_description": "A shield from an ancient knight known for his steadfast defense.",
       "reward_comment":"A good defense is the best offense I suppose.",
@@ -36,7 +33,6 @@
       "reward_game_points": 10
   },
   {
-    "reward_id":4,
     "reward_name": "Girdle of Strength",
     "reward_description": "A belt magically enchanted to give the wearer untold strength",
     "reward_comment":"Allows you to skip leg day AND holds up your pants, excellent.",
@@ -48,7 +44,6 @@
     "reward_game_points": 10
 },
 {
-    "reward_id":5,
     "reward_name": "Tome of Insight",
     "reward_description": "A book with secrets of the metaphysical. Each page fills you with brilliance.",
     "reward_comment":"Knowledge truely is power.",
@@ -60,7 +55,6 @@
     "reward_game_points": 10
 },
 {
-    "reward_id":6,
     "reward_name": "Armor of Faith",
     "reward_description": "A suit of thick heavy metal armor, but upon donning it feels weightless",
     "reward_comment":"The crusade carries on through me",
@@ -72,7 +66,6 @@
     "reward_game_points": 10
 },
 {
-    "reward_id":7,
     "reward_name": "Slayer's Helm",
     "reward_description": "The helmet of a fabled mercenary known to accept any challenge for the right price",
     "reward_comment":"Power takes the alignment of those who wield it.",
@@ -84,7 +77,6 @@
     "reward_game_points": 10
 },
 {
-    "reward_id":8,
     "reward_name": "Cape of the Magi",
     "reward_description": "A regal cloak of purple and blue, ancient mythos claims those who wear it see the future.",
     "reward_comment":"I peer through the grim darkness of the far future.",
@@ -96,7 +88,6 @@
     "reward_game_points": 10
 },
 {
-    "reward_id":9,
     "reward_name": "Boots of Wanderlust",
     "reward_description": "Heavy metal boots of unparalleled comfort, made from ancient metals making them weightless.",
     "reward_comment":"Though I walk through the valley of the shadow of death, I fear no evil.",
@@ -108,7 +99,6 @@
     "reward_game_points": 10
 },
 {
-    "reward_id":10,
     "reward_name": "Minor Health potion",
     "reward_description": "A vial of weak healing salves, restores minor health",
     "reward_comment":"Anything helps I suppose.",
@@ -120,7 +110,6 @@
     "reward_game_points": 10
 },
 {
-    "reward_id":11,
     "reward_name": "Health potion",
     "reward_description": "A vial of healing salves, restores health",
     "reward_comment":"Goes great with a spoonful of sugar.",
@@ -132,7 +121,6 @@
     "reward_game_points": 10
 },
 {
-    "reward_id":12,
     "reward_name": "Greater Health potion",
     "reward_description": "A vial of strong healing salves, restores greater health",
     "reward_comment":"Refreshed and ready for action.",
@@ -144,7 +132,6 @@
     "reward_game_points": 10
 },
 {
-    "reward_id":13,
     "reward_name": "Major Health potion",
     "reward_description": "A vial of highly potent healing salves, restores major health",
     "reward_comment":"Feeling young again!",
@@ -156,7 +143,6 @@
     "reward_game_points": 10
 },
 {
-    "reward_id":14,
     "reward_name": "Superior Health potion",
     "reward_description": "A vial of superior healing salves, restores immense health",
     "reward_comment":"Sticks and stones may break my bones, but potions forever cure me.",
@@ -168,7 +154,6 @@
     "reward_game_points": 10
 },
 {
-    "reward_id":15,
     "reward_name": "Phoenix Health potion",
     "reward_description": "A vial of mythical healing salves, restores full health",
     "reward_comment":"Like the phoenix, I rise again!",

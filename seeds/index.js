@@ -7,7 +7,7 @@ const {
   GameEncounter,
   GameItem,
   Inventory,
-  Rewards,
+  Reward,
 } = require("../models");
 
 const userData = require("./userData");
@@ -26,7 +26,7 @@ const seedDatabase = async () => {
     individualHooks: true,
     returning: true,
   });
-  const rewards = await Rewards.bulkCreate(rewardsData, {
+  const rewards = await Reward.bulkCreate(rewardsData, {
     individualHooks: true,
     returning: true,
   });

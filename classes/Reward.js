@@ -41,9 +41,7 @@ class RewardClass {
               //res.status(404).json({ message: 'No user with this id!' });
               return;
             }
-            console.log("this.reward is is", this.reward_id);
-            console.log("Reward id" , reward_id);
-            console.log("single reward result", dbReward);
+            
             return dbReward;
 
           } catch (err) {

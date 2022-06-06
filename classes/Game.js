@@ -189,10 +189,10 @@ class GameClass {
             const rewardData = await reward.getSingle(reward_id);
 
             //Change Game STATS HERE
-            this.game_health+=parseInt(rewardData.reward_health_points);
-            this.game_strength+=parseInt(rewardData.reward_strength_points);
-            this.game_endurance+=parseInt(rewardData.reward_endurance_points);
-            this.game_Intelligence+=parseInt(rewardData.reward_intelligence_points);
+            this.game_health+=parseInt(rewardData.reward_health);
+            this.game_strength+=parseInt(rewardData.reward_strength);
+            this.game_endurance+=parseInt(rewardData.reward_endurance);
+            this.game_Intelligence+=parseInt(rewardData.reward_intelligence);
             this.game_points+=parseInt(rewardData.reward_game_points)
 
             return rewardData;
