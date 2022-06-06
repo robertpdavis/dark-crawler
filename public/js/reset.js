@@ -15,7 +15,7 @@ const resetFormHandler = async (event) => {
     const err = document.querySelector('#reset-error');
 
     if (email) {
-      const response = await fetch('/reset', {
+      const response = await fetch('/api/users/reset', {
         method: 'PUT',
         body: JSON.stringify({ email }),
         headers: { 'Content-Type': 'application/json' },
