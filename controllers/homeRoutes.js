@@ -20,26 +20,18 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/dashboard', withAuth, async (req, res) => {
-    //To do
-    const menu = 
-    {
-      label1:'Option 1',
-      href1:'#',
-      label2: 'Option 2',
-      href2:'#'
-    }
 
     const savedGameData= await checkSavedGame(req.session.userId);
     if (savedGameData!=0)
     {
       const gameData = savedGameData[0].dataValues;
       console.log("GameData",gameData);
-      res.render('dashboard', { menu, gameData, userFullname:req.session.fullName, loggedIn: req.session.loggedIn, title: 'Dashboard', layout: 'main' });
+      res.render('dashboard', { gameData, userFullname:req.session.fullName, loggedIn: req.session.loggedIn, title: 'Dashboard', layout: 'main' });
     }
     else
     {
 
-      res.render('dashboard', {menu, loggedIn: req.session.loggedIn, userFullname:req.session.fullName, title: 'Dashboard', layout: 'main' });
+      res.render('dashboard', {loggedIn: req.session.loggedIn, userFullname:req.session.fullName, title: 'Dashboard', layout: 'main' });
     }
 
     
@@ -49,7 +41,7 @@ router.get('/game', withAuth, async (req, res) => {
   const menu = 
   {
       label1:'Save Game',
-      href1:'#',
+      href1:'/dashboard',
       label2: 'Finish Game',
       href2:'#'
   }
@@ -62,7 +54,7 @@ router.get('/game', withAuth, async (req, res) => {
   })
   const characters = await character.getAll();
   
-  res.render('characters', { menu, characters, loggedIn: req.session.loggedIn, title: 'Characters', layout: 'main' });
+  res.render('characters', {characters, loggedIn: req.session.loggedIn, title: 'Characters', layout: 'main' });
 });
 
 router.post('/gamestart', withAuth, async (req, res) => {
@@ -86,7 +78,7 @@ router.get('/gamestart', withAuth, async (req, res) => {
   const menu = 
     {
         label1:'Save Game',
-        href1:'#',
+        href1:'/dashboard',
         label2: 'Finish Game',
         href2:'#'
     }
@@ -135,7 +127,7 @@ router.get('/gamestart/:game_id', withAuth, async (req, res) => {
   const menu = 
     {
         label1:'Save Game',
-        href1:'#',
+        href1:'/dashboard',
         label2: 'Finish Game',
         href2:'#'
     }
@@ -167,7 +159,7 @@ router.get('/gamestart/:game_id', withAuth, async (req, res) => {
         req.session.characterId=null;
         req.session.moves=0;
       })
-      res.render('dashboard', {menu, loggedIn: req.session.loggedIn, userFullname:req.session.fullName, title: 'Dashboard', layout: 'main' });
+      res.render('dashboard', { loggedIn: req.session.loggedIn, userFullname:req.session.fullName, title: 'Dashboard', layout: 'main' });
     }
 })
 
