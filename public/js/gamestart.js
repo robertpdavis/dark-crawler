@@ -87,7 +87,7 @@ const movePos = async ()=>
                 setInterval(()=>{
                     closeModal();
                     location.reload('/gamestart/'+result.game_id);
-                },3000)
+                },4000)
             }
             else if(result.game_status==="Finish")
             {
@@ -96,14 +96,14 @@ const movePos = async ()=>
                 setInterval(()=>{
                     closeModal();
                     location.reload('/dashboard');
-                },3000)
+                },4000)
             }else
             {
                 closeModal();
                 location.reload('/gamestart/'+result.game_id);
             }
             
-        },3000)
+        },5000)
 
         
     }

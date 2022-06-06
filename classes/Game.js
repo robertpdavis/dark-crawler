@@ -193,6 +193,18 @@ class GameClass {
             this.game_Intelligence+=parseInt(rewardData.reward_intelligence);
             this.game_points+=parseInt(rewardData.reward_game_points)
 
+            //Setting GAME STATS to 100 if it exceeds after getting any reward
+            if (this.game_strength<=0 || this.game_health<=0 || this.game_endurance<=0 || this.game_Intelligence<=0)
+            {
+                //character finished game over
+                this.game_strength=0;
+                this.game_health=0;
+                this.game_endurance=0;
+                this.game_Intelligence=0;
+                this.game_status="Over"
+            }
+
+
             return rewardData;
         }
         catch (err){
