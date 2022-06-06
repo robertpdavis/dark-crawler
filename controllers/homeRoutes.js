@@ -164,6 +164,7 @@ router.get('/gamestart/:game_id', withAuth, async (req, res) => {
       req.session.save(()=>{
         req.session.gameId="";
         req.session.characterId="";
+        req.session.moves=0;
       })
       res.render('dashboard', {menu, loggedIn: req.session.loggedIn, userFullname:req.session.fullName, title: 'Dashboard', layout: 'main' });
     }

@@ -142,7 +142,7 @@ class GameClass {
                 game_id: this.game_id
               },
             });
-            
+            console.log("GAME UPDATING VALUES: ", response);  
             return;
           } catch (err) {
             console.log(err);
@@ -171,7 +171,7 @@ class GameClass {
                 this.game_strength=0;
                 this.game_health=0;
                 this.game_endurance=0;
-                // this.game_Intelligence=0;
+                this.game_Intelligence=0;
                 this.game_status="Over"
             }
             
