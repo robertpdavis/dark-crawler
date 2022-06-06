@@ -37,7 +37,7 @@ Game.init(
       allowNull: false,
       validate: {
         min: 0,
-        max: 100,
+        max: 500,
       },
     },
     game_strength: {
