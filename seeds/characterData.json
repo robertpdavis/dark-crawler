@@ -6,7 +6,7 @@
     "character_strength": 60,
     "character_endurance":30,
     "character_Intelligence":30,
-    "character_image" : "char1.png"
+    "character_image" : "char2.png"
   },
   {
     "character_name": "Scholar",
@@ -15,7 +15,7 @@
     "character_strength": 30,
     "character_endurance":30,
     "character_Intelligence":60,
-    "character_image" : "char2.png"
+    "character_image" : "char3.png"
   },
   {
     "character_name": "Templar",
@@ -24,6 +24,6 @@
     "character_strength": 30,
     "character_endurance":60,
     "character_Intelligence":30,
-    "character_image" : "char3.png"
+    "character_image" : "char1.png"
   }
 ]
