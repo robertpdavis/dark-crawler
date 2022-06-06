@@ -1,18 +1,16 @@
-const { UUIDV4, Model, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
 class Character extends Model {}
 
 Character.init(
   {
-    //Changed to simple integer id (UUID was causing problems seeding)
     character_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
-    //Not needed for basic game. The game model has ref to character
     game_id: {
       type: DataTypes.INTEGER,
       references: {
@@ -20,7 +18,6 @@ Character.init(
         key: "game_id",
       },
     },
-    //Not needed for basic game. The game should link to inventory?
     inventory_id: {
       type: DataTypes.INTEGER,
       references: {
@@ -71,6 +68,9 @@ Character.init(
         max: 100,
       },
     },
+    character_image: {
+      type: DataTypes.STRING,
+    }
   },
   {
     sequelize,

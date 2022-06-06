@@ -23,9 +23,10 @@ const resetFormHandler = async (event) => {
         reseterror.textContent= "Password doesnt match!";
         return;
     }
+
     
     if (email && password && resetcode) {
-      const response = await fetch('/api/users/resetpass', {
+      const response = await fetch('/resetpass', {
         method: 'PUT',
         body: JSON.stringify({ email, password, resetcode}),
         headers: { 'Content-Type': 'application/json' },

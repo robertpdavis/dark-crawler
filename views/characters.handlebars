@@ -1,0 +1,27 @@
+ <div class="col-12 grid-column">
+    <div class="row grid-row">
+        <div class="col-12">
+            <h3 class="center text-color-white">Select your character</h3>
+        </div>
+    </div>
+</div>
+
+<section>
+<div class="container top-pad col-lg-8 col-md-12 col-sm-8">
+  <div class="row characters" id="characters">
+     {{#each characters as |character|}}
+                {{> character-details}}
+            {{/each}}
+  </div>
+</div>
+</section>
+
+ <div class="col-12 grid-column game-button">
+    <div class="row grid-row">
+        <div class="col-12">
+            <button class="button highlight is-primary" id="btn-search">Go!</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/game.js"></script>

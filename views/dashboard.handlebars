@@ -1,19 +1,16 @@
 <section class="container container-fluid mt-5">
-  <section class="container-fluid">
-    <div class="jumbotron">
-      <h1 class="display-4 glow">Welcome!, {{fullname}}</h1>
-      <p class="lead">Please select from the following options.</p>
-      <hr class="my-4">
-      <h3 class="text-center text-warning font-weight-bold">Resume the game or start a new game.</h3>
-      <center>
-        <div class="game-buttons">
-            <a href="/game" class="btn btn-dark btn-lg btn-block" type="button" id="new-game">New Game</a>
+    <section class="container-fluid">
+      <div class="jumbotron">
+        <h1 class="display-4 glow" style="color: white">Welcome!, {{userFullname}}</h1>
+        {{#if gameData includeZero=false}}
+        <div class="alert alert-primary" role="alert">
+          You already have an Active game saved, click <a href="/gamestart/{{gameData.game_id}}"><button class="btn btn-dark" type="button" id="start-game">Resume Game</button></a> to continue playing from where you left. Otherweise, start new game by pressing link below.
+          
         </div>
+        {{/if}}
         <div class="game-buttons">
-            <a href="/game" class="btn btn-dark btn-lg btn-block" type="button" id="continue-game">Continue Game</a>
+            <a href="/game"><button class="btn btn-dark" type="button" id="start-game">Start Game</button> </a>
         </div>
-      </center>
-    </div>
-  </section>
+      </div>
+    </section>
 </section>
-<script src="js/game.js"></script>

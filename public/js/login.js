@@ -1,15 +1,15 @@
 var newUser = document.querySelector("#new-user");
-var myModal = new bootstrap.Modal(document.getElementById("eModal"), {});
+// var myModal = new bootstrap.Modal(document.getElementById("eModal"), {});
 
 newUser.addEventListener("click", createUser);
 
-function showModal(title, error){
-  let modalTitle = document.getElementById("eModalTitle");
-  let modalBody = document.getElementById('eModalBody');
-  modalBody.textContent = error;
-  modalTitle.textContent = title;
-  myModal.show();
-}
+// function showModal(title, error){
+//   let modalTitle = document.getElementById("eModalTitle");
+//   let modalBody = document.getElementById('eModalBody');
+//   modalBody.textContent = error;
+//   modalTitle.textContent = title;
+//   myModal.show();
+// }
 
 function createUser(event){
     event.preventDefault();
@@ -23,13 +23,13 @@ const loginFormHandler = async (event) => {
     const password = document.querySelector('#password').value.trim();
 
     if (email && password) {
-      const response = await fetch('/api/users/login', {
+      const response = await fetch('/login', {
         method: 'POST',
         body: JSON.stringify({ email, password }),
         headers: { 'Content-Type': 'application/json' },
       });
   
-      console.log(response);
+      
       if (response.ok) {
         document.location.replace('/dashboard');
       } else {
