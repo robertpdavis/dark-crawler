@@ -120,6 +120,7 @@ router.get('/gamestart', withAuth, async (req, res) => {
       req.session.save(async ()=>{
         game.setNewGameId(gameData.game_id);
         req.session.gameId=await gameData.game_id;
+        req.session.moves=0;
       })
     res.render('game', { menu, gameData, gameCharacter, loggedIn: req.session.loggedIn, title: 'Game Grid', layout: 'main' });
     }else{
@@ -162,8 +163,8 @@ router.get('/gamestart/:game_id', withAuth, async (req, res) => {
     else
     {
       req.session.save(()=>{
-        req.session.gameId="";
-        req.session.characterId="";
+        req.session.gameId=null;
+        req.session.characterId=null;
         req.session.moves=0;
       })
       res.render('dashboard', {menu, loggedIn: req.session.loggedIn, userFullname:req.session.fullName, title: 'Dashboard', layout: 'main' });
