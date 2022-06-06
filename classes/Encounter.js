@@ -48,8 +48,21 @@ class EncounterClass {
           }
     }
 
-    async checkRemainingEncounters(){
+    async getRandomEncounterId(){
+      try {
+        const dbEncounter = await Encounter.findAll({
       
+        });
+    
+        const encounters = dbEncounter.map((encounter) =>
+          encounter.get({ plain: true })
+        );
+
+        let option = Math.floor(Math.random() * encounters.length);
+        return encounters[option]["encounter_id"];
+      }catch(err){
+        return err;
+      }
     }
 }
 

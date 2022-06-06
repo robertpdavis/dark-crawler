@@ -89,7 +89,15 @@ const movePos = async ()=>
                     location.reload('/gamestart/'+result.game_id);
                 },3000)
             }
-            else
+            else if(result.game_status==="Finish")
+            {
+                url =  `<h6>Well done.</h6><img src="../images/winner.gif" width=470>`;
+                showModal("Winner", url)
+                setInterval(()=>{
+                    closeModal();
+                    location.reload('/dashboard');
+                },3000)
+            }else
             {
                 closeModal();
                 location.reload('/gamestart/'+result.game_id);
