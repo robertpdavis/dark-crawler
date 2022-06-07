@@ -1,26 +1,22 @@
-// const router = require('express').Router();
-// // const { User } = require('../models');
-// const withAuth = require('../../utils/auth');
-// // const sendMail = require('../../utils/email');
-// // const randToken = require('rand-token');
-// const Game = require('../../classes/Game');
-// const CharacterClass = require('../../classes/Character');
-
-// router.get('/', withAuth, async (req, res) => {
-//     const menu = 
-//     {
-//         label1:'Save Game',
-//         href1:'#',
-//         label2: 'Finish Game',
-//         href2:'#'
-//     }
-//     //Get grid data
-//     // const game = new Game;
-//     // const grid = await game.createGrid();
+const router = require('express').Router();
+const withAuth = require('../../utils/auth');
+const GameClass = require('../../classes/Game');
+const game = new GameClass;
   
-//     const character = new CharacterClass;
-//     const characters = await character.getAll();
+  router.post('/gamestart', withAuth, async (req, res) => {
     
-//     res.render('characters', { menu, characters, loggedIn: req.session.loggedIn, title: 'Characters', layout: 'main' });
-//   });
-  
+    try{
+        
+      // console.log("Selected character", req.body.selectedCharacter);
+      req.session.save(()=>{
+        req.session.characterId = req.body.selectedCharacter;
+        res.status(200).json({message: "Game Starting"});
+      });
+      
+    }
+    catch (err){
+      res.status(404).json({title:"Error", message: err});
+    }
+  });
+
+  module.exports = router;
