@@ -26,7 +26,7 @@ const resetFormHandler = async (event) => {
 
     
     if (email && password && resetcode) {
-      const response = await fetch('/resetpass', {
+      const response = await fetch('/api/users/resetpass', {
         method: 'PUT',
         body: JSON.stringify({ email, password, resetcode}),
         headers: { 'Content-Type': 'application/json' },
