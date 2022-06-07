@@ -4,7 +4,7 @@
     "encounter_name": "Kobold Ambush",
     "encounter_description": "While adventuring through the winding paths a group of kobolds leap from the shadows and fire their arrows!",
     "encounter_comment":"You manage to overcome the kobolds but not unscathed, a hard lesson learned.",
-    "encounter_health":4,
+    "encounter_health":10,
     "encounter_strength":5,
     "encounter_endurance":4,
     "encounter_intelligence": 2,
@@ -18,7 +18,7 @@
     "encounter_health":8,
     "encounter_strength":7,
     "encounter_endurance":1,
-    "encounter_intelligence": 20,
+    "encounter_intelligence": 10,
     "encounter_game_points": -10
   },
   {
@@ -26,10 +26,10 @@
     "encounter_name": "Baby dragon",
     "encounter_description": "You encounter a room littered with random trinkets and coins, the lair of a young dragon!",
     "encounter_comment":"You defeat the dragon, but the ceiling begins collapsing, preventing you from looting. Next time!",
-    "encounter_health":2,
-    "encounter_strength":2,
-    "encounter_endurance":2,
-    "encounter_intelligence": 1,
+    "encounter_health":5,
+    "encounter_strength":5,
+    "encounter_endurance":5,
+    "encounter_intelligence": 5,
     "encounter_game_points": -10
   },
   {
@@ -37,10 +37,10 @@
     "encounter_name": "Cave Troll",
     "encounter_description": "As you enter a nearby cave searching for clues, you discover a troll's lair!",
     "encounter_comment":"While successful, the troll's regenerative properties proved difficult to overcome. You retreat for now, the investigation can continue after some rest.",
-    "encounter_health":1,
-    "encounter_strength":1,
-    "encounter_endurance":1,
-    "encounter_intelligence": 1,
+    "encounter_health":10,
+    "encounter_strength":5,
+    "encounter_endurance":10,
+    "encounter_intelligence": 0,
     "encounter_game_points": -10
   },
   {
@@ -48,10 +48,10 @@
     "encounter_name": "Swimming Challenge",
     "encounter_description": "The path leads to a stair well that continues downward into a pool of brackish water. Undeterred, you hold your breath and dive in!",
     "encounter_comment":"You emerge on the other side, but realizing your body is full of cuts and shallow wounds you realize the severity of your mistake.",
-    "encounter_health":9,
-    "encounter_strength":6,
-    "encounter_endurance":2,
-    "encounter_intelligence": 2,
+    "encounter_health":5,
+    "encounter_strength":5,
+    "encounter_endurance":10,
+    "encounter_intelligence": 0,
     "encounter_game_points": -10
   },
   {
@@ -59,10 +59,10 @@
     "encounter_name": "Skeleton Horde",
     "encounter_description": "While venturing through a graveyard, a small horde of skeletons with rags and simple weapons waylay you.",
     "encounter_comment":"Though not the most dangerous encounter, the inconvenience sets you back as resources are few.",
-    "encounter_health":2,
-    "encounter_strength":2,
-    "encounter_endurance":2,
-    "encounter_intelligence": 2,
+    "encounter_health":5,
+    "encounter_strength":10,
+    "encounter_endurance":5,
+    "encounter_intelligence": 5,
     "encounter_game_points": -10
   },
   {
@@ -70,10 +70,10 @@
     "encounter_name": "Glyph Trap",
     "encounter_description": "Within a wizard's library you discover several books of seemingly high value. While investigating one, you notice a rune on the cover shine brightly.",
     "encounter_comment":"The book explodes in your hands, causing severe burns and setting the library on fire.",
-    "encounter_health":0,
-    "encounter_strength":5,
-    "encounter_endurance":0,
-    "encounter_intelligence": 2,
+    "encounter_health":10,
+    "encounter_strength":0,
+    "encounter_endurance":5,
+    "encounter_intelligence": 10,
     "encounter_game_points": -10
   },
   {
@@ -81,10 +81,10 @@
     "encounter_name": "Treasure Mimic",
     "encounter_description": "Expecting danger around the corner, you're delightfully surprised to notice a treasure chest instead!",
     "encounter_comment":"Unfortunately the chest turned out to be a Mimic! A hideous monster disguised as a chest that eats adventurers who attempt to reach into it.",
-    "encounter_health":2,
-    "encounter_strength":5,
-    "encounter_endurance":1,
-    "encounter_intelligence": 8,
+    "encounter_health":10,
+    "encounter_strength":0,
+    "encounter_endurance":0,
+    "encounter_intelligence": 10,
     "encounter_game_points": -10
   },
   {
@@ -94,7 +94,7 @@
     "encounter_comment":"Victory is yours, but the bites have left you poisoned costing you time and resources.",
     "encounter_health":5,
     "encounter_strength":5,
-    "encounter_endurance":6,
+    "encounter_endurance":8,
     "encounter_intelligence": 5,
     "encounter_game_points": -10
   },
@@ -103,10 +103,10 @@
     "encounter_name": "Treasure Hunters",
     "encounter_description": "You stumble across a small group of treasure hunters who attempt to relieve you of your hard earned loot.",
     "encounter_comment":"After searching the bodies of the foolish treasure hunters, you discover they had yet to gather anything of value.",
-    "encounter_health":9,
-    "encounter_strength":6,
-    "encounter_endurance":1,
-    "encounter_intelligence": 1,
+    "encounter_health":10,
+    "encounter_strength":5,
+    "encounter_endurance":5,
+    "encounter_intelligence": 5,
     "encounter_game_points": -10
   }
 ]
