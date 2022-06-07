@@ -49,6 +49,23 @@ class RewardClass {
             return err;
           }
     }
+
+    async getRandomRewardId(){
+      try {
+        const dbReward = await Reward.findAll({
+      
+        });
+    
+        const rewards = dbReward.map((reward) =>
+          reward.get({ plain: true })
+        );
+
+        let option = Math.floor(Math.random() * rewards.length);
+        return rewards[option]["reward_id"];
+      }catch(err){
+        return err;
+      }
+    }
 }
 
 module.exports= RewardClass;

@@ -132,7 +132,7 @@ class GameClass {
             const response = await Game.update({
                 game_health: this.game_health,
                 game_strength: this.game_strength,
-                game_endurace: this.game_endurace,
+                game_endurance: this.game_endurance,
                 game_Intelligence: this.game_Intelligence,
                 game_grid: this.game_grid,
                 game_status: this.game_status,
@@ -155,8 +155,6 @@ class GameClass {
             const encounter = new EncounterClass();
             const encounterData = await encounter.getSingle(encounter_id);
 
-            let oldCharacterGameStrength =this.game_strength;
-
             //CHANGE GAME STATS HERE
             this.game_strength-=parseInt( encounterData.encounter_strength);
             this.game_health-=parseInt( encounterData.encounter_health);
@@ -165,7 +163,7 @@ class GameClass {
             this.game_points-=parseInt(encounterData.encounter_game_points);
             
             
-            if (this.game_strength<=0 || this.game_health<=0 || this.game_endurance<=0)
+            if (this.game_strength<=0 || this.game_health<=0 || this.game_endurance<=0 || this.game_Intelligence<=0)
             {
                 //character finished game over
                 this.game_strength=0;
@@ -194,6 +192,18 @@ class GameClass {
             this.game_endurance+=parseInt(rewardData.reward_endurance);
             this.game_Intelligence+=parseInt(rewardData.reward_intelligence);
             this.game_points+=parseInt(rewardData.reward_game_points)
+
+            //Setting GAME STATS to 100 if it exceeds after getting any reward
+            if (this.game_strength<=0 || this.game_health<=0 || this.game_endurance<=0 || this.game_Intelligence<=0)
+            {
+                //character finished game over
+                this.game_strength=0;
+                this.game_health=0;
+                this.game_endurance=0;
+                this.game_Intelligence=0;
+                this.game_status="Over"
+            }
+
 
             return rewardData;
         }
@@ -233,12 +243,27 @@ class GameClass {
             this.game_grid[gridValues.playerRow][gridValues.playerCol]["emoji"] ="🟢";
             this.game_grid[gridValues.playerRow][gridValues.playerCol]["refId"] ="";
         }
+        await this.checkRemainingEncounter();
         await this.updateActiveGame();
         return returnValue;
     }
 
     async checkRemainingEncounter(){
-        
+        let gameChkEncounters=0;
+        for (let row=0; row < this.game_grid.length; row++)
+        {
+            for (let col=0; col<this.game_grid[row].length; col++)
+            { 
+                if (this.game_grid[row][col]["type"]==="encounter")
+                    {
+                        gameChkEncounters++
+                        this.game_status="Active"
+                        return gameChkEncounters;
+                    }
+            }
+        }
+        this.game_status="Finish"
+        return gameChkEncounters;
     }
 
     async createGrid() {
@@ -247,6 +272,8 @@ class GameClass {
         const gridRows = 5;
         const gridCol = tiles/gridRows;
         var grid = [];
+        const randEncounter= new EncounterClass();
+        const randReward = new RewardClass();
 
         //Get the encounters and rewards from the database
         // const encounterData = await Encounter.findAll();
@@ -279,14 +306,17 @@ class GameClass {
 
                         let subOption = Math.floor(Math.random() * 2);
                         if (subOption === 1) {
-                            let selection = Math.floor(Math.random() * encounters.length);
+                            //let selection = Math.floor(Math.random() * encounters.length);
+                            let selection = await randEncounter.getRandomEncounterId();
+                            
                             obj.type = 'encounter';
-                            obj.refId=encounters[selection].encounter_id;
+                            obj.refId= selection;
                             obj.emoji='⚔️';
                         } else {
-                            let selection = Math.floor(Math.random() * rewards.length);
+                            // let selection = Math.floor(Math.random() * rewards.length);
+                            let selection = await randReward.getRandomRewardId();
                             obj.type = 'reward';
-                            obj.refId= rewards[selection].reward_id;
+                            obj.refId= selection;
                             obj.emoji= '💰';
                         }
 
@@ -308,83 +338,5 @@ class GameClass {
     }
 
 }
-
-//test data
-encounters = 
-[
-    {
-        encounter_id:1,
-        encounter_name: "Enc 1",
-        encounter_description: 'Enc 1 description',
-        encounter_comment:"You got smashed",
-        encounter_health:40,
-        encounter_strength:25,
-        encounter_endurance:40,
-        encounter_intelligence: 20,
-        encounter_game_points: -10
-    },
-    {
-        encounter_id:2,
-        encounter_name: "Enc 2",
-        encounter_description: 'Enc 2 description',
-        encounter_comment:"You won",
-        encounter_health:10,
-        encounter_strength:10,
-        encounter_endurance:10,
-        encounter_intelligence: 20,
-        encounter_game_points: -20
-    },
-    {
-        encounter_id:3,
-        encounter_name: "Enc 1",
-        encounter_description: 'Enc 1 description',
-        encounter_comment:"You got smashed",
-        encounter_health:40,
-        encounter_strength:25,
-        encounter_endurance:40,
-        encounter_intelligence: 20,
-        encounter_game_points: -10
-    }
-];
-
-rewards = 
-[
-    {
-        reward_id:1,
-        reward_name: "Rew 1",
-        reward_description: 'Rew 1 description',
-        reward_comment:"Good stuff",
-        reward_type:"Weapon",
-        reward_health:0,
-        reward_strength:30,
-        reward_endurance:2,
-        reward_intelligence: 0,
-        reward_game_points: 10
-    },
-    {
-        reward_id:2,
-        reward_name: "Rew 1",
-        reward_description: 'Rew 1 description',
-        reward_comment:"Good stuff",
-        reward_type:"Weapon",
-        reward_health:0,
-        reward_strength:30,
-        reward_endurance:2,
-        reward_intelligence: 0,
-        reward_game_points: 10
-    },
-    {
-        reward_id:3,
-        reward_name: "Rew 3",
-        reward_description: 'Rew 3 description',
-        reward_comment:"Good stuff",
-        reward_type:"Weapon",
-        reward_health:0,
-        reward_strength:30,
-        reward_endurance:2,
-        reward_intelligence: 0,
-        reward_game_points: 10
-    }
-];
 
 module.exports = GameClass;
