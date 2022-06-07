@@ -3,7 +3,7 @@
 ![HTML](https://img.shields.io/badge/-NODE-orange) ![JS](https://img.shields.io/badge/-JS-yellow) ![Node](https://img.shields.io/badge/-MySQL2-darkgreen)
 ![JEST](https://img.shields.io/badge/-SQL-darkred) ![Sequelize](https://img.shields.io/badge/-Sequelize-blue) ![Dotenv](https://img.shields.io/badge/-Dotenv-purple) ![Express](https://img.shields.io/badge/Express-indigo) ![Bcrypt](https://img.shields.io/badge/Bcrypt-white)
 
-![Express-session](https://img.shields.io/badge/Express-session-brown) ![Express-handlebars](https://img.shields.io/badge/Express-handlebars-red) 
+![Express-session](https://img.shields.io/badge/Express-session-brown) ![Express-handlebars](https://img.shields.io/badge/Express-handlebars-red)
 
 ![Github licence](https://img.shields.io/badge/license-MIT-blue)
 
@@ -19,7 +19,7 @@ Dark Crawker application is following the MVC paradigm in its architectural stru
 
 ```md
 AS A gamer
-I WANT to be able to enjoy all the fun of 
+I WANT to be able to enjoy all the fun of
 dungeons on a web app as a single player
 SO THAT I can play at my convenience
 ```
@@ -54,7 +54,6 @@ WHEN I click on the logout option in the navigation
 THEN I am signed out of the site
 WHEN I am idle on the site for more than a set time
 THEN I am prompted to log in again before I can play the game
-
 ```
 
 # Screenshots
@@ -63,36 +62,37 @@ The following screens demonstrates the application functionality:
 
 ## Homepage
 
-![homepage](./public/images/home.png) 
+![homepage](./public/images/home.png)
 
 ## Login Screen
 
-![login](./public/images/login.png) 
+![login](./public/images/login.png)
 
 ## Dashboard
 
-![Dashboard](./public/images/Dashboard.png) 
+![Dashboard](./public/images/dashboard.png)
 
 ## Character Selection
 
-![character](./public/images/character.png) 
+![character](./public/images/character.png)
 
 ## Game
 
-![Game](./public/images/Game.png) 
+![Game](./public/images/game.png)
 
 ## Heroku Deployment
 
 https://dark-crawler.herokuapp.com/
 
 ## Table-of-Contents
-* [Installation](#installation)
-* [Usage](#usage)
-* [Technologies](#technologies)
-* [License](#license)
-* [Contributing](#contributing)
-* [Questions](#questions)
-* [Credits](#credits)
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technologies](#technologies)
+- [License](#license)
+- [Contributing](#contributing)
+- [Questions](#questions)
+- [Credits](#credits)
 
 ## [Installation](#table-of-contents)
 
@@ -103,38 +103,44 @@ npm run seed
 
 npm start
 ```
+
 ## [Usage](#table-of-contents)
+
 This project was built in Node.js using the express and sequelize packages utilizing the MVC paradigm.
 
 ## [Technologies](#table-of-contents)
-* JS
-* Node.js
-* MongoDB
-* Handlebars
-* Model-View-Controller
-* dotenv
-* MySQL
-* Cookies
-* Sessions
+
+- JS
+- Node.js
+- MongoDB
+- Handlebars
+- Model-View-Controller
+- dotenv
+- MySQL
+- Cookies
+- Sessions
 
 ## [License](#table-of-contents)
+
 The application is covered under the following license: [MIT](https://choosealicense.com/licenses/mit/)
 
 ## [Contributing](#table-of-contents)
+
 To contribute to this application, create a pull request or fork the repo.
 
 ## [Questions](#table-of-contents)
+
 If you have any question about the repo, open an issue.
 
 ## [Credits](#table-of-contents)
 
-| Contributors                             | Roles                       | Tasks                    |
-| ---------------------------------------- | --------------------------- | ------------------------ |
-| Rob Davis | Project Manager/Coder & Scoping | Rendering, Design        |
-| Matthew Fernandez | Full Stack Coder/Model Builder | Rendering, Models        |
-| Murad Ali | Full Stack Coder/View Designer | Rendering, Design |
-| Umair Khalid | Full Stack Coder/Main Code | Routes, Design |
-
+| Contributors      | Roles                           | Tasks             |
+| ----------------- | ------------------------------- | ----------------- |
+| Rob Davis         | Project Manager/Coder & Scoping | Rendering, Design |
+| Matthew Fernandez | Full Stack Coder/Model Builder  | Rendering, Models |
+| Murad Ali         | Full Stack Coder/View Designer  | Rendering, Design |
+| Umair Khalid      | Full Stack Coder/Main Code      | Routes, Design    |
 
 ---
+
 © 2022 Dark. Confidential and Proprietary. All Rights Reserved.
