@@ -80,9 +80,9 @@ The following screens demonstrates the application functionality:
 
 ![Game](./public/images/game.png)
 
-## Heroku Deployment
+## Deployment
 
-https://dark-crawler.herokuapp.com/
+Served on AWS at https://darkcrawler.robpdavis.com.au 
 
 ## Table-of-Contents
 
